@@ -22,7 +22,7 @@ MAGIC = b'HUF1'
 VERSION = 1
 STRUCT = struct.Struct('>4sBBQQI32s')
 MAX_METADATA = 2 * 1024 * 1024
-MAX_ORIGINAL = 512 * 1024 * 1024  # 비정상적인 길이 헤더/메모리 고갈 방지
+MAX_ORIGINAL = (1 << 64) - 1  # 파일 포맷 unsigned 64bit 길이 한도. 스트리밍 처리
 
 
 @dataclass
@@ -48,7 +48,7 @@ def pack(codec_id: str, data: bytes, metadata: bytes,
     if len(metadata) > MAX_METADATA:
         raise ValueError('메타데이터 크기 제한 초과')
     if len(data) > MAX_ORIGINAL:
-        raise ValueError('최대 512 MiB 원본 파일까지만 처리할 수 있습니다.')
+        raise ValueError('원본 크기는 컨테이너의 64비트 크기 필드를 초과할 수 없습니다.')
     BitReader(payload, payload_bits)  # 패딩 검증
     fixed = STRUCT.pack(MAGIC, VERSION, len(raw_id), len(data), payload_bits,
                         len(metadata), hashlib.sha256(data).digest())
@@ -64,7 +64,7 @@ def unpack(raw: bytes) -> Archive:
     if not (1 <= name_len <= 64) or meta_len > MAX_METADATA:
         raise ValueError('압축 파일의 알고리즘 ID/테이블 길이가 비정상적입니다.')
     if original_size > MAX_ORIGINAL:
-        raise ValueError('원본 크기 헤더가 안전 제한인 512 MiB를 넘었습니다.')
+        raise ValueError('원본 크기 헤더가 64비트 지원 범위를 넘었습니다.')
     header_size = STRUCT.size + name_len + meta_len
     if len(raw) < header_size or len(raw) - header_size != (bits + 7) // 8:
         raise ValueError('헤더/페이로드 길이가 맞지 않거나 데이터가 잘렸습니다.')
@@ -76,3 +76,57 @@ def unpack(raw: bytes) -> Archive:
     payload = raw[header_size:]
     BitReader(payload, bits)
     return Archive(codec_id, original_size, digest, metadata, payload, bits, header_size)
+
+
+@dataclass
+class StreamArchive:
+    codec_id: str
+    original_size: int
+    digest: bytes
+    metadata: bytes
+    payload_bits: int
+    header_size: int
+    file_size: int
+
+
+def header_bytes(codec_id: str, original_size: int, metadata: bytes,
+                 payload_bits: int, digest: bytes) -> bytes:
+    raw_id = codec_id.encode('ascii')
+    if not 1 <= len(raw_id) <= 64:
+        raise ValueError('알고리즘 ID는 1~64자 ASCII여야 합니다.')
+    if len(metadata) > MAX_METADATA or len(digest) != 32:
+        raise ValueError('메타데이터/해시 길이가 올바르지 않습니다.')
+    if not 0 <= original_size <= MAX_ORIGINAL or not 0 <= payload_bits <= MAX_ORIGINAL:
+        raise ValueError('원본 크기 또는 비트 길이가 64비트 필드 범위를 초과했습니다.')
+    return (STRUCT.pack(MAGIC, VERSION, len(raw_id), original_size,
+                        payload_bits, len(metadata), digest) + raw_id + metadata)
+
+
+def inspect_stream(path: str | 'Path') -> StreamArchive:
+    """58B 고정 헤더와 최대 2MiB 메타데이터만 읽고 전체 길이를 검사."""
+    from pathlib import Path
+    path = Path(path)
+    size = path.stat().st_size
+    with path.open('rb') as source:
+        fixed = source.read(STRUCT.size)
+        if len(fixed) != STRUCT.size:
+            raise ValueError('손상된 압축 파일: 고정 헤더 길이가 부족합니다.')
+        magic, version, name_len, original_size, bits, meta_len, digest = STRUCT.unpack(fixed)
+        if magic != MAGIC or version != VERSION:
+            raise ValueError('지원하지 않는 압축 파일: MAGIC 또는 버전 불일치')
+        if not (1 <= name_len <= 64) or meta_len > MAX_METADATA:
+            raise ValueError('압축 파일 헤더의 알고리즘 ID/코드표 길이가 비정상적입니다.')
+        header_size = STRUCT.size + name_len + meta_len
+        if size != header_size + (bits + 7) // 8:
+            raise ValueError('손상된 압축 파일: 헤더 크기와 페이로드 길이 불일치 또는 파일 잘림')
+        if original_size > 0 and bits < original_size:
+            raise ValueError('압축 페이로드 비트 수가 원본 바이트 수보다 작습니다 (비정상 헤더).')
+        identifier = source.read(name_len)
+        try:
+            codec_id = identifier.decode('ascii')
+        except UnicodeDecodeError as exc:
+            raise ValueError('알고리즘 ID는 ASCII여야 합니다.') from exc
+        metadata = source.read(meta_len)
+        if len(metadata) != meta_len:
+            raise ValueError('압축 메타데이터가 잘렸습니다.')
+    return StreamArchive(codec_id, original_size, digest, metadata, bits, header_size, size)

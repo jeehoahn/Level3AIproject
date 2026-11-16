@@ -9,10 +9,14 @@ from PySide6.QtWidgets import (
     QMainWindow, QWidget, QVBoxLayout, QHBoxLayout, QGridLayout, QGroupBox,
     QPushButton, QLineEdit, QComboBox, QLabel, QFileDialog, QTabWidget,
     QTableWidget, QTableWidgetItem, QHeaderView, QMessageBox, QProgressBar,
-    QPlainTextEdit, QSplitter, QCheckBox, QAbstractItemView,
+    QPlainTextEdit, QSplitter, QCheckBox, QAbstractItemView, QScrollArea,
 )
 from algorithms.registry import CODECS
-from core.engine import compress_file, compress_and_verify, decompress_file, benchmark, export_csv
+from core.engine import (compress_file, compress_and_verify, decompress_file,
+                         benchmark, export_csv, StageError)
+from core.failures import failed_record
+from core.result_view import CHART_METRICS, METRIC_INFO, chart_rows, save_records, load_records
+from ui.result_chart import HorizontalBarChart
 
 
 def num(value, decimals=3, suffix=''):
@@ -38,7 +42,7 @@ class NumericItem(QTableWidgetItem):
 class JobThread(QThread):
     status = Signal(int, str)
     success = Signal(object)
-    failure = Signal(str)
+    failure = Signal(object)
 
     def __init__(self, job: str, options: dict):
         super().__init__()
@@ -50,40 +54,55 @@ class JobThread(QThread):
             progress = lambda frac, message: self.status.emit(int(frac * 100), message)
             if self.job == 'compress':
                 result = compress_file(self.options['source'], self.options['target'],
-                                       self.options['codec'], progress)
+                                       self.options['codec'], progress,
+                                       measure_memory=self.options.get('measure_memory', False))
                 self.success.emit({'records': [result], 'summary': [], 'message': '압축 완료 (복원 미수행)'})
             elif self.job == 'verify':
                 result = compress_and_verify(
                     self.options['source'], self.options['target'], self.options['restored'],
-                    self.options['codec'], progress)
+                    self.options['codec'], progress,
+                    measure_memory=self.options.get('measure_memory', False))
                 self.success.emit({'records': [result], 'summary': [],
                                    'message': ('압축 + 복원 + 원본 바이트 비교 통과' if result['verified']
                                                else '압축 후 복원 불일치 감지! 손실률과 차이 바이트 수를 확인하세요.')})
             elif self.job == 'decompress':
-                result, _ = decompress_file(self.options['source'], self.options['target'], progress)
+                result, _ = decompress_file(self.options['source'], self.options['target'], progress,
+                                            measure_memory=self.options.get('measure_memory', False))
                 self.success.emit({'records': [result], 'summary': [],
                                    'message': '복원 + 저장된 SHA-256 확인 완료'})
             elif self.job == 'batch':
                 records, summary = benchmark(self.options['paths'], self.options['codecs'],
-                                             self.options['output_dir'], progress)
-                failures = sum(r['verified'] is not True for r in records)
+                                             self.options['output_dir'], progress,
+                                             measure_memory=self.options.get('measure_memory', False))
+                failures = sum(r.get('status') == '실패' or r.get('verified') is False for r in records)
                 self.success.emit({'records': records, 'summary': summary,
                                    'message': f'총 {len(records)}개 실험 완료 (무손실 검증 실패 {failures}개)'})
             else:
                 raise RuntimeError('알 수 없는 작업')
         except Exception as exc:
-            self.failure.emit(f'{type(exc).__name__}: {exc}')
+            stage = (exc.stage if isinstance(exc, StageError) else
+                     '복원' if self.job == 'decompress' else '압축')
+            cause = exc.original if isinstance(exc, StageError) else exc
+            source = self.options.get('source', '')
+            archive = (source if self.job == 'decompress' else self.options.get('target', ''))
+            restore = (self.options.get('target', '') if self.job == 'decompress' else
+                       self.options.get('restored', ''))
+            record = failed_record(source, archive, restore,
+                                   self.options.get('codec', '헤더 자동 식별'), stage, cause)
+            self.failure.emit({'message': f'{stage} 실패: {record["error_category"]} / {record["error_message"]}',
+                               'record': record})
 
 
 class MainWindow(QMainWindow):
     def __init__(self):
         super().__init__()
         self.setWindowTitle('허프만 코딩 실험실 | 팀 공통 GUI')
-        self.resize(1250, 940)
+        self.resize(1260, 850)
         self.worker = None
         self.records: list[dict] = []
         self.batch_records: list[dict] = []
         self.batch_summary: list[dict] = []
+        self.batch_record_indices: list[int] = []
         self.selected_paths: list[str] = []
         self._setup_ui()
 
@@ -104,7 +123,9 @@ class MainWindow(QMainWindow):
         self.tabs = QTabWidget()
         self.tabs.addTab(self._single_tab(), '개별 파일 압축 / 복원')
         self.tabs.addTab(self._batch_tab(), '다중 파일 실험 / 비교')
-        layout.addWidget(self.tabs, 3)
+        self.tabs.addTab(self._detail_tab(), '상세 결과 / 허프만 코드표')
+        self.tabs.addTab(self._chart_tab(), '결과 그래프 / 정렬')
+        layout.addWidget(self.tabs, 1)
 
         bar_row = QHBoxLayout()
         self.progress = QProgressBar()
@@ -116,10 +137,25 @@ class MainWindow(QMainWindow):
         bar_row.addWidget(self.progress_label, 4)
         layout.addLayout(bar_row)
 
-        detail = QGroupBox('상세 분석 결과 / 문자별 허프만 코드표')
-        dlayout = QVBoxLayout(detail)
+        self.memory_check = QCheckBox('알고리즘 메모리 측정 (tracemalloc + RSS 10ms 샘플; 시간 측정에 영향)')
+        self.memory_check.setChecked(False)
+        layout.addWidget(self.memory_check)
+
+        self.logs = QPlainTextEdit()
+        self.logs.setReadOnly(True)
+        self.logs.setMaximumHeight(84)
+        self.logs.setPlaceholderText('작업 결과 및 오류 메시지')
+        layout.addWidget(self.logs)
+
+    def _detail_tab(self):
+        page = QWidget()
+        dlayout = QVBoxLayout(page)
+        help_text = QLabel('실행한 모든 파일·압축 방식 조합을 선택해 압축 및 복원 결과와 바이트별 코드표를 확인합니다.')
+        help_text.setWordWrap(True)
+        help_text.setStyleSheet('color: #64748b;')
+        dlayout.addWidget(help_text)
         sel_row = QHBoxLayout()
-        sel_row.addWidget(QLabel('분석 대상'))
+        sel_row.addWidget(QLabel('파일 · 알고리즘 · 실행 기록'))
         self.record_combo = QComboBox()
         self.record_combo.currentIndexChanged.connect(self._show_record)
         sel_row.addWidget(self.record_combo, 2)
@@ -154,13 +190,71 @@ class MainWindow(QMainWindow):
         self.code_note.setWordWrap(True)
         self.code_note.setStyleSheet('color: #64748b; font-style: italic;')
         dlayout.addWidget(self.code_note)
-        layout.addWidget(detail, 5)
+        action_row = QHBoxLayout()
+        save_btn = QPushButton('상세 결과 JSON 저장')
+        save_btn.clicked.connect(self._save_history)
+        load_btn = QPushButton('기존 결과 JSON 불러오기')
+        load_btn.clicked.connect(self._load_history)
+        clear_btn = QPushButton('결과 목록 비우기')
+        clear_btn.clicked.connect(self._clear_history)
+        all_csv_btn = QPushButton('전체 결과 CSV 저장')
+        all_csv_btn.clicked.connect(self._export_all_csv)
+        action_row.addWidget(save_btn)
+        action_row.addWidget(load_btn)
+        action_row.addWidget(all_csv_btn)
+        action_row.addStretch()
+        action_row.addWidget(clear_btn)
+        dlayout.addLayout(action_row)
+        return page
 
-        self.logs = QPlainTextEdit()
-        self.logs.setReadOnly(True)
-        self.logs.setMaximumHeight(84)
-        self.logs.setPlaceholderText('작업 결과 및 오류 메시지')
-        layout.addWidget(self.logs)
+
+    def _chart_tab(self):
+        page = QWidget()
+        lay = QVBoxLayout(page)
+        lay.setSpacing(10)
+        info = QLabel('전체 실행 기록을 하나의 지표로 비교합니다. 막대를 클릭하면 해당 상세 결과로 이동합니다. 값이 없는 지표는 제외합니다.')
+        info.setWordWrap(True)
+        info.setStyleSheet('color: #64748b;')
+        lay.addWidget(info)
+        controls = QHBoxLayout()
+        controls.addWidget(QLabel('비교 지표'))
+        self.chart_metric_combo = QComboBox()
+        for key, label, unit, _ in CHART_METRICS:
+            self.chart_metric_combo.addItem(label, key)
+        self.chart_metric_combo.currentIndexChanged.connect(self._update_chart)
+        controls.addWidget(self.chart_metric_combo, 3)
+        controls.addWidget(QLabel('정렬'))
+        self.chart_sort_combo = QComboBox()
+        for label, value in (
+            ('값 큰 순 ↓', 'value_desc'), ('값 작은 순 ↑', 'value_asc'),
+            ('파일명 오름차순', 'name_asc'), ('파일명 내림차순', 'name_desc')
+        ):
+            self.chart_sort_combo.addItem(label, value)
+        self.chart_sort_combo.currentIndexChanged.connect(self._update_chart)
+        controls.addWidget(self.chart_sort_combo, 2)
+        controls.addWidget(QLabel('알고리즘'))
+        self.chart_algorithm_combo = QComboBox()
+        self.chart_algorithm_combo.addItem('전체 알고리즘', None)
+        for codec in CODECS.values():
+            self.chart_algorithm_combo.addItem(codec.name, codec.name)
+        self.chart_algorithm_combo.currentIndexChanged.connect(self._update_chart)
+        controls.addWidget(self.chart_algorithm_combo, 2)
+        lay.addLayout(controls)
+        tools = QHBoxLayout()
+        self.chart_info_label = QLabel('그래프를 표시할 결과가 없습니다.')
+        self.chart_info_label.setStyleSheet('color: #475569;')
+        tools.addWidget(self.chart_info_label, 1)
+        export_image = QPushButton('그래프 PNG 저장')
+        export_image.clicked.connect(self._export_chart_png)
+        tools.addWidget(export_image)
+        lay.addLayout(tools)
+        self.chart_scroll = QScrollArea()
+        self.chart_scroll.setWidgetResizable(True)
+        self.chart = HorizontalBarChart()
+        self.chart.recordSelected.connect(self._go_to_record)
+        self.chart_scroll.setWidget(self.chart)
+        lay.addWidget(self.chart_scroll, 1)
+        return page
 
     def _single_tab(self):
         page = QWidget()
@@ -198,8 +292,10 @@ class MainWindow(QMainWindow):
         opts.addLayout(btn_row)
         lay.addWidget(options)
 
-        tips = QLabel('※ 복원할 때는 .huf 헤더에서 알고리즘을 자동 선택합니다. '
-                      '정확한 손실률(바이트 비교)은 「압축 + 복원 + 손실률 검사」에서 계산합니다.')
+        tips = QLabel('※ 압축·복원 실행 시 입력 파일·출력 위치·압축 헤더를 자동 검사합니다. '
+                      '오류가 나면 「상세 결과」에 실패 단계와 원인을 기록합니다. '
+                      '정확한 손실률(원본 바이트 비교)은 「압축 + 복원 + 손실률 검사」에서 계산합니다. '
+                      '.huf 복원 시 알고리즘은 헤더에서 자동 선택합니다.')
         tips.setWordWrap(True)
         tips.setStyleSheet('color: #64748b;')
         lay.addWidget(tips)
@@ -254,23 +350,34 @@ class MainWindow(QMainWindow):
         self.summary_table.horizontalHeader().setSectionResizeMode(0, QHeaderView.ResizeMode.Stretch)
         self.summary_table.setMinimumHeight(90)
         lay.addWidget(self.summary_table, 2)
-        self.batch_table = QTableWidget(0, 7)
+        self.batch_table = QTableWidget(0, 9)
         self.batch_table.setHorizontalHeaderLabels(
-            ['파일', '알고리즘', '원본(byte)', '압축(byte)', '절감률(%)', '엔트로피', '손실률(%)'])
+            ['파일', '알고리즘', '상태', '원본(byte)', '압축(byte)', '절감률(%)', '엔트로피', '손실률(%)', '오류 원인'])
         self.batch_table.horizontalHeader().setSectionResizeMode(0, QHeaderView.ResizeMode.Stretch)
         self.batch_table.setSelectionBehavior(QAbstractItemView.SelectionBehavior.SelectRows)
         self.batch_table.itemSelectionChanged.connect(self._batch_clicked)
+        self.batch_table.cellDoubleClicked.connect(lambda row, col: self._open_batch_detail(row))
         lay.addWidget(self.batch_table, 3)
+        navigate = QHBoxLayout()
+        navigate.addWidget(QLabel('행을 더블클릭하면 해당 파일·알고리즘의 상세 결과로 이동합니다.'))
+        navigate.addStretch()
+        detail_btn = QPushButton('선택 실험 상세 보기')
+        detail_btn.clicked.connect(self._open_selected_batch_detail)
+        chart_btn = QPushButton('전체 결과 그래프 보기')
+        chart_btn.clicked.connect(lambda: self.tabs.setCurrentIndex(3))
+        navigate.addWidget(detail_btn)
+        navigate.addWidget(chart_btn)
+        lay.addLayout(navigate)
         return page
 
     def _browse_single(self):
         path, _ = QFileDialog.getOpenFileName(self, '파일 선택', '',
-                                              '텍스트/압축 파일 (*.txt *.huf *.bin);;모든 파일 (*.*)')
+                                              '텍스트/압축 파일 (*.txt *.huf *.bin);;모든 파일 (*)')
         if path:
             self.source_input.setText(path)
 
     def _add_paths(self):
-        paths, _ = QFileDialog.getOpenFileNames(self, '실험 파일 선택', '', '모든 파일 (*.*)')
+        paths, _ = QFileDialog.getOpenFileNames(self, '실험 파일 선택', '', '모든 파일 (*)')
         for path in paths:
             if path not in self.selected_paths:
                 self.selected_paths.append(path)
@@ -287,10 +394,33 @@ class MainWindow(QMainWindow):
             self.file_table.setItem(row, 0, QTableWidgetItem(Path(path).name))
             self.file_table.setItem(row, 1, QTableWidgetItem(path))
 
+    def _confirm_large_fgk(self, paths: list[str], codecs: list[str]) -> bool:
+        """대용량 FGK의 매우 긴 실행 시간을 시작 전에 명시적으로 경고합니다."""
+        if 'fgk' not in codecs:
+            return True
+        large = []
+        for path in paths:
+            try:
+                if Path(path).stat().st_size >= 100_000_000:
+                    large.append(Path(path).name)
+            except OSError:
+                continue
+        if not large:
+            return True
+        answer = QMessageBox.question(
+            self, '대용량 FGK 실행 주의',
+            'FGK 적응형 허프만은 바이트마다 Python 트리를 갱신합니다.\n'
+            '100MB 이상 파일은 압축/복원에 매우 오랜 시간이 걸릴 수 있습니다.\n'
+            '특히 enwik9 1GB에서는 정적 허프만부터 테스트하는 것을 권장합니다.\n\n'
+            '계속 실행할까요?\n' + ', '.join(large[:5]),
+            QMessageBox.StandardButton.Yes | QMessageBox.StandardButton.No,
+            QMessageBox.StandardButton.No)
+        return answer == QMessageBox.StandardButton.Yes
+
     def _start_single(self, job: str):
         source = self.source_input.text().strip()
-        if not source or not Path(source).is_file():
-            QMessageBox.warning(self, '파일 누락', '존재하는 입력 파일을 선택하세요.')
+        if not source:
+            QMessageBox.warning(self, '파일 누락', '입력 파일 경로를 선택하세요.')
             return
         if job == 'decompress':
             proposed = str(Path(source).with_name(Path(source).stem + '_restored.txt'))
@@ -305,6 +435,8 @@ class MainWindow(QMainWindow):
             options = {'source': source, 'target': dest, 'restored': restored,
                        'codec': self.codec_combo.currentData()}
         if not dest:
+            return
+        if job != 'decompress' and not self._confirm_large_fgk([source], [options['codec']]):
             return
         # 사용자가 직접 압축 파일을 덮어쓸 때 의도치 않은 삭제를 방지
         if Path(dest).exists():
@@ -323,6 +455,8 @@ class MainWindow(QMainWindow):
         if not self.selected_paths or not codecs:
             QMessageBox.warning(self, '실험 항목 부족', '파일 한 개 이상과 알고리즘 한 개 이상을 선택하세요.')
             return
+        if not self._confirm_large_fgk(self.selected_paths, codecs):
+            return
         output = QFileDialog.getExistingDirectory(self, '실험 결과 폴더 선택',
                                                   str(Path.cwd() / 'results'))
         if not output:
@@ -337,6 +471,7 @@ class MainWindow(QMainWindow):
         self.progress.setValue(0)
         self.progress_label.setText('실행 중...')
         self.logs.appendPlainText(f'▶ {job} 실행')
+        options = {**options, 'measure_memory': self.memory_check.isChecked()}
         self.worker = JobThread(job, options)
         self.worker.status.connect(self._on_progress)
         self.worker.success.connect(self._on_success)
@@ -355,39 +490,72 @@ class MainWindow(QMainWindow):
         self.progress_label.setText(message)
 
     def _on_success(self, payload: dict):
-        failures = [r for r in payload['records'] if r['verified'] is False]
+        new_records = payload['records']
+        failures = [r for r in new_records if r.get('status') == '실패' or r.get('verified') is False]
         self.logs.appendPlainText(('⚠ ' if failures else '✓ ') + payload['message'])
         self.progress.setValue(100)
-        self.progress_label.setText(payload['message'])
-        self.records = payload['records']
-        self._reload_records()
+        self.progress_label.setText(payload['message'] + ' · 상세 결과/그래프 탭에서 확인 가능')
+        start_index = len(self.records)
+        # 작업을 새로 실행해도 이전 실험 기록을 유지해 단일/일괄 데이터를 함께 비교합니다.
+        self.records.extend(new_records)
+        self._reload_records(selected_index=len(self.records) - 1)
+        self._refresh_chart_algorithms()
+        self._update_chart()
         if payload['summary']:
-            self.batch_records = payload['records']
+            self.batch_records = new_records
+            self.batch_record_indices = list(range(start_index, len(self.records)))
             self.batch_summary = payload['summary']
             self._show_batch()
             self.tabs.setCurrentIndex(1)
+        elif new_records:
+            self.tabs.setCurrentIndex(2)
 
-    def _on_failure(self, message: str):
+    def _on_failure(self, payload: dict):
+        message = payload['message']
+        record = payload['record']
+        self.records.append(record)
+        self._reload_records(selected_index=len(self.records)-1)
+        self._refresh_chart_algorithms()
+        self._update_chart()
+        self.tabs.setCurrentIndex(2)
         self.logs.appendPlainText('✗ ' + message)
-        self.progress_label.setText('실패: ' + message)
+        self.progress_label.setText('실패: 상세 결과에 실패 원인이 기록되었습니다.')
         QMessageBox.critical(self, '작업 실패 / 파일 검증 오류', message)
 
-    def _reload_records(self):
+    def _reload_records(self, selected_index: int | None = None):
+        if selected_index is None:
+            selected_index = self.record_combo.currentData()
         self.record_combo.blockSignals(True)
         self.record_combo.clear()
         for i, record in enumerate(self.records):
-            label = f"{Path(record['source']).name}  |  {record['algorithm']}"
+            file_name = Path(record.get('source') or '알 수 없는 파일').name
+            verified = ('작업 실패' if record.get('status') == '실패' else
+                        '복원 OK' if record.get('verified') is True else
+                        '검증 실패' if record.get('verified') is False else '복원 미검사')
+            label = f"#{i+1:03d} · {file_name} · {record['algorithm']} · {verified}"
             self.record_combo.addItem(label, i)
         self.record_combo.blockSignals(False)
         if self.records:
-            self.record_combo.setCurrentIndex(0)
-            self._show_record(0)
+            if not isinstance(selected_index, int) or not (0 <= selected_index < len(self.records)):
+                selected_index = 0
+            self.record_combo.setCurrentIndex(selected_index)
+            self._show_record(selected_index)
+        else:
+            self.filter_input.clear()
+            self.metrics_table.setRowCount(0)
+            self.codes_table.setRowCount(0)
+            self.code_note.setText('실험 결과를 선택하면 코드표를 표시합니다.')
 
     def _show_record(self, index: int):
         if not (0 <= index < len(self.records)):
             return
         result = self.records[index]
         fields = [
+            ('작업 상태', result.get('status', '기록 없음')),
+            ('실패 단계', result.get('failure_stage') or '—'),
+            ('오류 분류', result.get('error_category') or '—'),
+            ('오류 종류', result.get('error_type') or '—'),
+            ('오류 원인', result.get('error_message') or '—'),
             ('알고리즘', result['algorithm']),
             ('원본 크기', num(result['original_bytes'], suffix=' B')),
             ('문자 수 (UTF-8)', num(result['original_chars']) if result['original_chars'] is not None else 'UTF-8 아님'),
@@ -404,14 +572,23 @@ class MainWindow(QMainWindow):
             ('헤더 포함 평균 비트 수', num(result['avg_file_bits'], suffix=' bit/byte')),
             ('엔트로피 대비 차이', num(result['redundancy_bits'], suffix=' bit/byte')),
             ('엔트로피 대비 효율(H/실제)', num(result['entropy_efficiency_pct'], suffix=' %')),
-            ('압축 소요 시간', num(result['compression_sec'], 6, ' s')),
-            ('복원 소요 시간', num(result['decompression_sec'], 6, ' s')),
+            ('압축 소요 시간(파일 읽기~쓰기)', num(result['compression_sec'], 6, ' s')),
+            ('압축 스트리밍 인코더 시간(청크 입출력 포함)', num(result.get('compression_algorithm_sec'), 6, ' s')),
+            ('압축 Python 추적 피크', num(result.get('compression_trace_peak_mib'), 3, ' MiB')),
+            ('압축 RSS 최고 관측값(전체 프로세스)', num(result.get('compression_rss_peak_mib'), 3, ' MiB')),
+            ('압축 RSS 증가 피크(시작 대비)', num(result.get('compression_rss_increase_mib'), 3, ' MiB')),
+            ('복원 소요 시간(파일 읽기~쓰기)', num(result['decompression_sec'], 6, ' s')),
+            ('복원 스트리밍 디코더 시간(청크 입출력 포함)', num(result.get('decompression_algorithm_sec'), 6, ' s')),
+            ('복원 Python 추적 피크', num(result.get('decompression_trace_peak_mib'), 3, ' MiB')),
+            ('복원 RSS 최고 관측값(전체 프로세스)', num(result.get('decompression_rss_peak_mib'), 3, ' MiB')),
+            ('복원 RSS 증가 피크(시작 대비)', num(result.get('decompression_rss_increase_mib'), 3, ' MiB')),
             ('압축 처리량', num(result['compression_mib_s'], suffix=' MiB/s')),
             ('복원 처리량', num(result['decompression_mib_s'], suffix=' MiB/s')),
             ('복원 결과', num(result['verified']) if result['verified'] is not None else '검사 미수행'),
             ('서로 다른 바이트 수', num(result['mismatched_bytes'])),
             ('복원 손실률', num(result['loss_pct'], 6, ' %')),
             ('정확도 확인 방법', result.get('integrity_method', '—')),
+            ('자동 사전 검사 결과', result.get('preflight_explanation') or '—'),
             ('원본 파일', result['source']),
             ('압축 파일', result['archive_path']),
             ('복원 파일', result['restored_path'] or '—'),
@@ -420,7 +597,7 @@ class MainWindow(QMainWindow):
         for i, (key, value) in enumerate(fields):
             self.metrics_table.setItem(i, 0, QTableWidgetItem(key))
             item = QTableWidgetItem(str(value))
-            if key == '복원 결과' and result['verified'] is False:
+            if (key == '작업 상태' and result.get('status') == '실패') or (key == '복원 결과' and result['verified'] is False):
                 item.setForeground(QColor('#dc2626'))
             self.metrics_table.setItem(i, 1, item)
         self._populate_codes(result['symbols'])
@@ -457,6 +634,132 @@ class MainWindow(QMainWindow):
                            if self.codes_table.item(row, col) else '')
                 for col in (0, 3)))
 
+    def _update_chart(self, *_):
+        if not hasattr(self, 'chart'):
+            return
+        key = self.chart_metric_combo.currentData()
+        if key not in METRIC_INFO:
+            return
+        label, unit, precision = METRIC_INFO[key]
+        filtered, omitted = chart_rows(self.records, key,
+                                       self.chart_sort_combo.currentData() or 'value_desc',
+                                       self.chart_algorithm_combo.currentData())
+        self.chart.set_data(filtered, label, unit, precision)
+        total = len(filtered) + omitted
+        self.chart_info_label.setText(
+            f'표시: {len(filtered):,}건 / 선택한 알고리즘의 기록 {total:,}건  |  '
+            f'값 없음으로 제외: {omitted:,}건  |  각 막대: 파일 × 압축 방식 × 실행 회차')
+        self.chart_scroll.verticalScrollBar().setValue(0)
+
+    def _export_chart_png(self):
+        if not self.chart.rows:
+            QMessageBox.information(self, '그래프 없음', '표시할 실험 결과가 없습니다.')
+            return
+        path, _ = QFileDialog.getSaveFileName(self, '그래프 이미지 저장',
+                                              'huffman_chart.png', 'PNG 이미지 (*.png)')
+        if not path:
+            return
+        # 스크롤된 영역만 아니라 전체 그래프를 캡처합니다.
+        if not self.chart.grab().save(path, 'PNG'):
+            QMessageBox.warning(self, '저장 실패', 'PNG 이미지를 저장하지 못했습니다.')
+        else:
+            self.logs.appendPlainText('✓ 그래프 PNG 저장: ' + path)
+
+    def _export_all_csv(self):
+        if not self.records:
+            QMessageBox.information(self, '내보낼 결과 없음', '먼저 압축/실험을 실행하세요.')
+            return
+        path, _ = QFileDialog.getSaveFileName(self, '전체 결과 CSV 저장',
+                                              'huffman_all_results.csv', 'CSV 파일 (*.csv)')
+        if path:
+            try:
+                export_csv(self.records, path)
+                self.logs.appendPlainText('✓ 전체 결과 CSV 저장: ' + path)
+            except Exception as exc:
+                QMessageBox.critical(self, 'CSV 내보내기 실패', str(exc))
+
+    def _go_to_record(self, index: int):
+        if 0 <= index < len(self.records):
+            combo_index = self.record_combo.findData(index)
+            if combo_index >= 0:
+                self.record_combo.setCurrentIndex(combo_index)
+                self.tabs.setCurrentIndex(2)
+
+    def _save_history(self):
+        if not self.records:
+            QMessageBox.information(self, '저장할 결과 없음', '먼저 압축/실험을 실행하세요.')
+            return
+        path, _ = QFileDialog.getSaveFileName(self, '상세 결과 JSON 저장',
+                                              'huffman_detail_results.json', 'JSON 파일 (*.json)')
+        if path:
+            try:
+                save_records(self.records, path)
+                self.logs.appendPlainText('✓ 상세 결과 저장: ' + path)
+            except Exception as exc:
+                QMessageBox.critical(self, '결과 저장 실패', str(exc))
+
+    def _load_history(self):
+        path, _ = QFileDialog.getOpenFileName(self, '상세 결과 JSON 불러오기', '', 'JSON 파일 (*.json)')
+        if path:
+            try:
+                loaded = load_records(path)
+                if not loaded:
+                    QMessageBox.information(self, '결과 없음', '저장된 실행 결과가 없습니다.')
+                    return
+                self.records.extend(loaded)
+                self._reload_records(selected_index=len(self.records) - 1)
+                self._refresh_chart_algorithms()
+                self._update_chart()
+                self.logs.appendPlainText(f'✓ 상세 결과 {len(loaded)}건 불러옴: {path}')
+            except Exception as exc:
+                QMessageBox.critical(self, '결과 불러오기 실패', str(exc))
+
+    def _clear_history(self):
+        if not self.records:
+            return
+        reply = QMessageBox.question(self, '결과 목록 비우기',
+                                     '화면에 쌓인 모든 실행 결과를 비울까요?\n'
+                                     '실제 압축/복원 파일은 삭제하지 않습니다.')
+        if reply != QMessageBox.StandardButton.Yes:
+            return
+        self.records.clear()
+        self.batch_records.clear()
+        self.batch_record_indices.clear()
+        self.batch_summary.clear()
+        self._reload_records()
+        self._show_batch()
+        self._update_chart()
+        self.logs.appendPlainText('✓ 화면의 결과 기록을 비웠습니다.')
+
+    def _refresh_chart_algorithms(self):
+        # 추가 알고리즘 / 저장된 결과의 기존 알고리즘까지 모두 선택 가능.
+        selected = self.chart_algorithm_combo.currentData()
+        names = sorted({r.get('algorithm', '') for r in self.records if r.get('algorithm')}
+                       | {codec.name for codec in CODECS.values()})
+        self.chart_algorithm_combo.blockSignals(True)
+        self.chart_algorithm_combo.clear()
+        self.chart_algorithm_combo.addItem('전체 알고리즘', None)
+        for name in names:
+            self.chart_algorithm_combo.addItem(name, name)
+        next_index = self.chart_algorithm_combo.findData(selected)
+        self.chart_algorithm_combo.setCurrentIndex(max(0, next_index))
+        self.chart_algorithm_combo.blockSignals(False)
+
+    def _open_batch_detail(self, row: int):
+        if 0 <= row < len(self.batch_record_indices):
+            record_index = self.batch_record_indices[row]
+            combo_index = self.record_combo.findData(record_index)
+            if combo_index >= 0:
+                self.record_combo.setCurrentIndex(combo_index)
+                self.tabs.setCurrentIndex(2)
+
+    def _open_selected_batch_detail(self):
+        rows = self.batch_table.selectionModel().selectedRows()
+        if rows:
+            self._open_batch_detail(rows[0].row())
+        else:
+            QMessageBox.information(self, '결과 선택', '먼저 비교표에서 행을 선택하세요.')
+
     def _show_batch(self):
         self.summary_table.setRowCount(len(self.batch_summary))
         for r, item in enumerate(self.batch_summary):
@@ -470,9 +773,10 @@ class MainWindow(QMainWindow):
                 self.summary_table.setItem(r, c, QTableWidgetItem(value))
         self.batch_table.setRowCount(len(self.batch_records))
         for r, item in enumerate(self.batch_records):
-            cols = [Path(item['source']).name, item['algorithm'],
+            cols = [Path(item['source']).name, item['algorithm'], item.get('status', '—'),
                     num(item['original_bytes']), num(item['compressed_bytes']),
-                    num(item['saving_pct']), num(item['entropy']), num(item['loss_pct'], 6)]
+                    num(item['saving_pct']), num(item['entropy']), num(item['loss_pct'], 6),
+                    item.get('error_message', '')]
             for c, value in enumerate(cols):
                 self.batch_table.setItem(r, c, QTableWidgetItem(value))
 
@@ -480,8 +784,8 @@ class MainWindow(QMainWindow):
         rows = self.batch_table.selectionModel().selectedRows()
         if rows:
             row = rows[0].row()
-            if row < self.record_combo.count():
-                self.record_combo.setCurrentIndex(row)
+            if row < len(self.batch_record_indices):
+                self.record_combo.setCurrentIndex(self.batch_record_indices[row])
 
     def _export_csv(self):
         if not self.batch_records:

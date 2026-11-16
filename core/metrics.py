@@ -81,6 +81,42 @@ def summarize(original: bytes, archive_size: int, header_size: int,
     }
 
 
+
+def summarize_stream(stats, archive_size: int, header_size: int, payload_bits: int,
+                     algorithm: str, comp_time: float | None, decomp_time: float | None,
+                     codes: dict[int, str], code_note: str,
+                     source: str, archive: str, restored_file: str = '') -> dict:
+    """파일 전체 bytes 대신 스트리밍 빈도표와 크기만으로 기존과 동일한 지표 산출."""
+    n = stats.size
+    freqs = stats.frequencies
+    ent = (-sum((c/n) * math.log2(c/n) for c in freqs.values()) if n else 0.0)
+    avg_payload = payload_bits / n if n else 0.0
+    avg_total = archive_size * 8 / n if n else 0.0
+    symbols = []
+    for sym, freq in sorted(freqs.items(), key=lambda item: (-item[1], item[0])):
+        code = codes.get(sym, '—')
+        symbols.append({'symbol': symbol_display(sym), 'byte': sym, 'frequency': freq,
+                        'percentage': freq/n*100 if n else 0,
+                        'code': code, 'length': len(code) if code != '—' else None})
+    return {
+        'source': source, 'archive_path': archive, 'restored_path': restored_file,
+        'algorithm': algorithm, 'original_bytes': n, 'original_chars': stats.chars,
+        'compressed_bytes': archive_size, 'header_bytes': header_size,
+        'payload_bytes': archive_size - header_size, 'payload_bits': payload_bits,
+        'symbol_types': len(freqs), 'entropy': ent, 'avg_payload_bits': avg_payload,
+        'avg_file_bits': avg_total, 'redundancy_bits': avg_payload - ent,
+        'entropy_efficiency_pct': ent/avg_payload*100 if avg_payload else None,
+        'saving_pct': (1 - archive_size/n)*100 if n else None,
+        'size_ratio': n/archive_size if archive_size else None,
+        'header_share_pct': header_size/archive_size*100 if archive_size else None,
+        'compression_sec': comp_time, 'decompression_sec': decomp_time,
+        'compression_mib_s': n/1048576/comp_time if comp_time and comp_time > 0 else None,
+        'decompression_mib_s': n/1048576/decomp_time if decomp_time and decomp_time > 0 else None,
+        'mismatched_bytes': None, 'loss_pct': None, 'verified': None,
+        'code_note': code_note, 'symbols': symbols,
+    }
+
+
 EXPORT_FIELDS = [
     ('source', '원본 파일'), ('algorithm', '알고리즘'), ('original_bytes', '원본 크기(byte)'),
     ('original_chars', '문자 수(UTF-8)'), ('compressed_bytes', '압축 크기(byte)'),
@@ -93,7 +129,20 @@ EXPORT_FIELDS = [
     ('compression_sec', '압축 시간(s)'), ('decompression_sec', '복원 시간(s)'),
     ('compression_mib_s', '압축 처리량(MiB/s)'), ('decompression_mib_s', '복원 처리량(MiB/s)'),
     ('loss_pct', '복원 손실률(%)'), ('mismatched_bytes', '서로 다른 바이트 수'),
-    ('verified', '복원 정확'), ('archive_path', '압축 파일'), ('restored_path', '복원 파일'),
+    ('verified', '복원 정확'),
+    ('status', '작업 상태'), ('failure_stage', '실패 단계'),
+    ('error_category', '오류 분류'), ('error_type', '오류 종류'),
+    ('error_message', '오류 원인'),
+    ('compression_algorithm_sec', '압축 인코더 구간 시간(청크 I/O 포함,s)'),
+    ('decompression_algorithm_sec', '복원 디코더 구간 시간(청크 I/O 포함,s)'),
+    ('compression_trace_peak_mib', '압축 Python 추적 피크(MiB)'),
+    ('compression_rss_peak_mib', '압축 피크 RSS 샘플(MiB)'),
+    ('compression_rss_increase_mib', '압축 RSS 증가 피크(MiB)'),
+    ('decompression_trace_peak_mib', '복원 Python 추적 피크(MiB)'),
+    ('decompression_rss_peak_mib', '복원 피크 RSS 샘플(MiB)'),
+    ('decompression_rss_increase_mib', '복원 RSS 증가 피크(MiB)'),
+    ('preflight_explanation', '사전 점검'),
+    ('archive_path', '압축 파일'), ('restored_path', '복원 파일'),
 ]
 
 
@@ -102,13 +151,17 @@ def averages(records: list[dict]) -> list[dict]:
     for record in records:
         group.setdefault(record['algorithm'], []).append(record)
     keys = ('saving_pct', 'compression_sec', 'decompression_sec',
-            'entropy', 'avg_payload_bits', 'avg_file_bits', 'loss_pct')
+            'entropy', 'avg_payload_bits', 'avg_file_bits', 'loss_pct',
+            'compression_algorithm_sec', 'decompression_algorithm_sec',
+            'compression_trace_peak_mib', 'decompression_trace_peak_mib',
+            'compression_rss_peak_mib', 'decompression_rss_peak_mib')
     output = []
     for algo, group_records in group.items():
         row = {'algorithm': algo, 'count': len(group_records),
-               'pass_count': sum(r['verified'] is True for r in group_records)}
+               'pass_count': sum(r.get('verified') is True for r in group_records),
+               'fail_count': sum(r.get('status') == '실패' for r in group_records)}
         for key in keys:
-            values = [float(r[key]) for r in group_records if r[key] is not None]
+            values = [float(r[key]) for r in group_records if r.get(key) is not None]
             row[key] = sum(values) / len(values) if values else None
         output.append(row)
     return output

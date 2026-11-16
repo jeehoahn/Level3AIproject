@@ -5,11 +5,14 @@
 """
 from __future__ import annotations
 from collections import Counter
+from typing import Mapping, BinaryIO
 from dataclasses import dataclass
 from heapq import heappop, heappush
 from itertools import count
-from .base import Codec, PackedData, DecodedData, Progress
+from .base import Codec, PackedData, DecodedData, Progress, StreamEncoded, StreamDecoded
 from core.bitstream import BitReader, BitWriter
+from core.stream_bits import StreamBitReader, StreamBitWriter
+from core.file_stream import CHUNK_SIZE
 
 
 @dataclass
@@ -19,8 +22,7 @@ class Node:
     right: 'Node | None' = None
 
 
-def lengths_from_data(data: bytes) -> list[int]:
-    freqs = Counter(data)
+def lengths_from_frequencies(freqs: Mapping[int, int]) -> list[int]:
     lengths = [0] * 256
     if not freqs:
         return lengths
@@ -45,6 +47,10 @@ def lengths_from_data(data: bytes) -> list[int]:
             stack.append((node.right, depth + 1))
             stack.append((node.left, depth + 1))
     return lengths
+
+
+def lengths_from_data(data: bytes) -> list[int]:
+    return lengths_from_frequencies(Counter(data))
 
 
 def canonical_codes(lengths: list[int]) -> dict[int, tuple[int, int]]:
@@ -122,3 +128,114 @@ class StaticHuffman(Codec):
             progress(1.0)
         return DecodedData(bytes(restored), code_strings(codes),
                            '정적 코드표: 파일 전체에서 각 심볼의 코드는 동일합니다.')
+
+
+    def streaming_metadata(self, frequencies: Mapping[int, int]) -> bytes:
+        return bytes(lengths_from_frequencies(frequencies))
+
+    def encode_stream(self, source: BinaryIO, target: BinaryIO, original_size: int,
+                      metadata: bytes, progress: Progress = None) -> StreamEncoded:
+        if len(metadata) != 256:
+            raise ValueError('정적 허프만 코드 길이표 크기 오류')
+        codes = canonical_codes(list(metadata))
+        # 단일 심볼 최적화: 유효 코드가 항상 0 한 비트이므로
+        # 1GB 반복 입력도 Python에서 10억 번 비트 쓰기 루프를 돌지 않습니다.
+        if len(codes) == 1:
+            symbol = next(iter(codes))
+            processed = 0
+            for chunk in iter(lambda: source.read(CHUNK_SIZE), b''):
+                if chunk.count(symbol) != len(chunk):
+                    raise ValueError('빈도표 계산 이후 원본 데이터 내용이 변경되었습니다.')
+                processed += len(chunk)
+                if progress:
+                    progress(processed / max(1, original_size) * .8)
+            remaining = (processed + 7) // 8
+            zeros = bytes(CHUNK_SIZE)
+            while remaining:
+                size = min(remaining, len(zeros))
+                target.write(zeros[:size])
+                remaining -= size
+            if progress:
+                progress(1.0)
+            return StreamEncoded(processed, code_strings(codes),
+                                 '정적 코드표: 파일 전체에서 각 심볼의 코드는 동일합니다.')
+        writer = StreamBitWriter(target)
+        processed = 0
+        for chunk in iter(lambda: source.read(CHUNK_SIZE), b''):
+            for byte in chunk:
+                writer.write(*codes[byte])
+            processed += len(chunk)
+            if progress:
+                progress(processed / max(original_size, 1))
+        bits = writer.finish()
+        if progress:
+            progress(1.0)
+        return StreamEncoded(bits, code_strings(codes),
+                             '정적 코드표: 파일 전체에서 각 심볼의 코드는 동일합니다.')
+
+    def decode_stream(self, source: BinaryIO, target: BinaryIO,
+                      payload_bits: int, metadata: bytes, original_size: int,
+                      progress: Progress = None) -> StreamDecoded:
+        if len(metadata) != 256:
+            raise ValueError('정적 허프만 코드 길이표는 정확히 256바이트여야 합니다.')
+        codes = canonical_codes(list(metadata))
+        if (original_size == 0) != (len(codes) == 0):
+            raise ValueError('원본 길이와 코드표가 일치하지 않습니다.')
+        if len(codes) == 1:
+            # 한 글자만 존재하는 입력의 정규형 허프만 코드는 0(1비트).
+            if payload_bits != original_size:
+                raise ValueError('단일 심볼 압축 비트 길이가 원본 크기와 다릅니다.')
+            remaining = (payload_bits + 7) // 8
+            while remaining:
+                data = source.read(min(CHUNK_SIZE, remaining))
+                if not data or any(data):
+                    raise ValueError('단일 심볼 비트스트림이 손상되었거나 잘렸습니다.')
+                remaining -= len(data)
+            symbol = next(iter(codes))
+            block = bytes([symbol]) * CHUNK_SIZE
+            remaining = original_size
+            while remaining:
+                size = min(CHUNK_SIZE, remaining)
+                target.write(block[:size])
+                remaining -= size
+                if progress:
+                    progress(1.0 - remaining / max(1, original_size))
+            if progress:
+                progress(1.0)
+            return StreamDecoded(code_strings(codes),
+                                 '정적 코드표: 파일 전체에서 각 심볼의 코드는 동일합니다.')
+        reader = StreamBitReader(source, payload_bits)
+        # 하프만 트리 구조로 비트를 따라가며 심볼을 찾습니다.
+        root = {}
+        for sym, (code, width) in codes.items():
+            node = root
+            for shift in range(width - 1, 0, -1):
+                key = (code >> shift) & 1
+                node = node.setdefault(key, {})
+            final_key = code & 1
+            if final_key in node:
+                raise ValueError('중복된 허프만 코드 또는 접두 충돌이 있습니다.')
+            node[final_key] = sym
+        processed = 0
+        buffer = bytearray()
+        for _ in range(original_size):
+            node = root
+            while isinstance(node, dict):
+                bit = reader.read_bit()
+                node = node.get(bit)
+                if node is None:
+                    raise ValueError('허프만 테이블로 해석할 수 없는 코드입니다.')
+            buffer.append(node)
+            processed += 1
+            if len(buffer) >= CHUNK_SIZE:
+                target.write(buffer)
+                buffer.clear()
+                if progress:
+                    progress(processed / max(1, original_size))
+        if buffer:
+            target.write(buffer)
+        reader.finish()
+        if progress:
+            progress(1.0)
+        return StreamDecoded(code_strings(codes),
+                             '정적 코드표: 파일 전체에서 각 심볼의 코드는 동일합니다.')

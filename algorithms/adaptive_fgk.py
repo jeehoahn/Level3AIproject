@@ -6,8 +6,11 @@
 복원용 정적 테이블은 없습니다(헤더의 'fgk' 알고리즘 ID와 버전이 규칙을 결정).
 """
 from __future__ import annotations
-from .base import Codec, PackedData, DecodedData, Progress
+from .base import Codec, PackedData, DecodedData, Progress, StreamEncoded, StreamDecoded
+from typing import Mapping, BinaryIO
 from core.bitstream import BitReader, BitWriter
+from core.stream_bits import StreamBitReader, StreamBitWriter
+from core.file_stream import CHUNK_SIZE
 
 
 class Node:
@@ -180,3 +183,68 @@ class AdaptiveFGK(Codec):
         if progress:
             progress(1.0)
         return DecodedData(bytes(restored), tree.codes(), self.NOTE)
+
+
+    def streaming_metadata(self, frequencies: Mapping[int, int]) -> bytes:
+        return b''
+
+    def encode_stream(self, source: BinaryIO, target: BinaryIO, original_size: int,
+                      metadata: bytes, progress: Progress = None) -> StreamEncoded:
+        if metadata:
+            raise ValueError('FGK 헤더에는 코드 길이표가 없어야 합니다.')
+        tree = FGKTree()
+        writer = StreamBitWriter(target)
+        processed = 0
+        for chunk in iter(lambda: source.read(CHUNK_SIZE), b''):
+            for byte in chunk:
+                if byte in tree.leaves:
+                    writer.write(*tree.path(tree.leaves[byte]))
+                    tree.touch(byte)
+                else:
+                    writer.write(*tree.path(tree.nyt))
+                    writer.write(byte, 8)
+                    tree.add_new(byte)
+            processed += len(chunk)
+            if progress:
+                progress(processed / max(1, original_size))
+        bits = writer.finish()
+        if progress:
+            progress(1.0)
+        return StreamEncoded(bits, tree.codes(), self.NOTE)
+
+    def decode_stream(self, source: BinaryIO, target: BinaryIO,
+                      payload_bits: int, metadata: bytes, original_size: int,
+                      progress: Progress = None) -> StreamDecoded:
+        if metadata:
+            raise ValueError('FGK 헤더에는 정적 코드표를 넣지 않습니다.')
+        reader = StreamBitReader(source, payload_bits)
+        tree = FGKTree()
+        restored = bytearray()
+        processed = 0
+        for _ in range(original_size):
+            curr = tree.root
+            while curr.left is not None:
+                curr = curr.right if reader.read_bit() else curr.left
+            if curr.nyt:
+                symbol = reader.read(8)
+                if symbol in tree.leaves:
+                    raise ValueError('NYT가 이미 등장한 바이트를 가리킵니다.')
+                tree.add_new(symbol)
+            else:
+                symbol = curr.symbol
+                if symbol is None or symbol not in tree.leaves:
+                    raise ValueError('FGK 트리가 손상되었습니다.')
+                tree.touch(symbol)
+            restored.append(symbol)
+            processed += 1
+            if len(restored) >= CHUNK_SIZE:
+                target.write(restored)
+                restored.clear()
+                if progress:
+                    progress(processed / max(1, original_size))
+        if restored:
+            target.write(restored)
+        reader.finish()
+        if progress:
+            progress(1.0)
+        return StreamDecoded(tree.codes(), self.NOTE)
