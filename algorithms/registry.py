@@ -1,8 +1,9 @@
 """알고리즘을 추가하는 곳. 팀원은 각자 파일을 만들고 한 줄 등록합니다."""
 from .static_huffman import StaticHuffman
 from .adaptive_fgk import AdaptiveFGK
+from .practical_codec import PracticalLZ77
 
-CODECS = {codec.id: codec for codec in (StaticHuffman(), AdaptiveFGK())}
+CODECS = {codec.id: codec for codec in (StaticHuffman(), AdaptiveFGK(), PracticalLZ77())}
 
 
 def get_codec(codec_id: str):
