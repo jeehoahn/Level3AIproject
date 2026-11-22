@@ -7,7 +7,6 @@ from __future__ import annotations
 from pathlib import Path
 import random
 import string
-import argparse
 
 SEED = 20261113
 SIZES = (50_000, 100_000, 500_000)
@@ -62,8 +61,3 @@ def generate(output_dir: Path, sizes=SIZES):
     print(f'총 {len(sizes)*len(styles)}개 파일 생성 완료: {output_dir}')
 
 
-if __name__ == '__main__':
-    parser = argparse.ArgumentParser()
-    parser.add_argument('--output', default='test_corpus')
-    args = parser.parse_args()
-    generate(Path(args.output))

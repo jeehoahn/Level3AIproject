@@ -14,7 +14,7 @@ from typing import Callable, TypeVar
 
 try:
     import psutil
-except ImportError:  # CLI는 안내 가능한 오류를 내도록 준비
+except ImportError:  # RSS를 측정할 수 없을 때도 다른 지표는 기록한다.
     psutil = None
 
 T = TypeVar('T')

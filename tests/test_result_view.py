@@ -42,6 +42,20 @@ class ResultViewTests(unittest.TestCase):
         with self.assertRaises(ValueError):
             chart_rows(self.records, 'not-a-metric')
 
+    def test_filter_by_source_with_same_filename_in_other_directory(self):
+        source = self.records[0]['source']
+        self.records.extend([
+            {'source': '/other/나.txt', 'algorithm': 'A', 'saving_pct': 99},
+            {'source': source, 'algorithm': 'B', 'saving_pct': 50},
+            {'source': source, 'algorithm': 'B', 'saving_pct': None},
+        ])
+        rows, omitted = chart_rows(self.records, 'saving_pct', source=source)
+        self.assertEqual([row['record_index'] for row in rows], [4, 0])
+        self.assertEqual(omitted, 1)
+        rows, omitted = chart_rows(self.records, 'saving_pct', algorithm='A', source=source)
+        self.assertEqual([row['record_index'] for row in rows], [0])
+        self.assertEqual(omitted, 0)
+
     def test_save_load_with_code_table(self):
         with tempfile.TemporaryDirectory() as directory:
             path = Path(directory) / 'huffman_record.json'

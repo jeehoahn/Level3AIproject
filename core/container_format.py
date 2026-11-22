@@ -119,13 +119,13 @@ def inspect_stream(path: str | 'Path') -> StreamArchive:
         header_size = STRUCT.size + name_len + meta_len
         if size != header_size + (bits + 7) // 8:
             raise ValueError('손상된 압축 파일: 헤더 크기와 페이로드 길이 불일치 또는 파일 잘림')
-        if original_size > 0 and bits < original_size:
-            raise ValueError('압축 페이로드 비트 수가 원본 바이트 수보다 작습니다 (비정상 헤더).')
         identifier = source.read(name_len)
         try:
             codec_id = identifier.decode('ascii')
         except UnicodeDecodeError as exc:
             raise ValueError('알고리즘 ID는 ASCII여야 합니다.') from exc
+        if codec_id in ('static', 'fgk') and bits < original_size:
+            raise ValueError('허프만 페이로드 비트 수가 원본 바이트 수보다 작습니다 (비정상 헤더).')
         metadata = source.read(meta_len)
         if len(metadata) != meta_len:
             raise ValueError('압축 메타데이터가 잘렸습니다.')

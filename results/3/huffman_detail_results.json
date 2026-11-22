@@ -1,0 +1,4926 @@
+{
+  "format": "huffman-results",
+  "version": 1,
+  "records": [
+    {
+      "source": "C:/Level3AIproject/test_corpus/AI 랜덤 생성 샘플/korean_50000.txt",
+      "archive_path": "C:\\Level3AIproject\\results\\3\\korean_50000_8fcabdc3_static.huf",
+      "restored_path": "C:\\Level3AIproject\\results\\3\\korean_50000_8fcabdc3_static.restored.txt",
+      "algorithm": "A · 정적 허프만 (힙 + 정규형)",
+      "original_bytes": 122940,
+      "original_chars": 50000,
+      "compressed_bytes": 77882,
+      "header_bytes": 320,
+      "payload_bytes": 77562,
+      "payload_bits": 620493,
+      "symbol_types": 63,
+      "entropy": 5.0156389559424674,
+      "avg_payload_bits": 5.0471205466081015,
+      "avg_file_bits": 5.067968114527412,
+      "redundancy_bits": 0.03148159066563405,
+      "entropy_efficiency_pct": 99.37624650778767,
+      "saving_pct": 36.65039856840735,
+      "size_ratio": 1.578541896715544,
+      "header_share_pct": 0.41087799491538485,
+      "compression_sec": 0.07478030000015679,
+      "decompression_sec": 0.18421639999996842,
+      "compression_mib_s": 1.567855711447247,
+      "decompression_mib_s": 0.6364510459383881,
+      "mismatched_bytes": 0,
+      "loss_pct": 0.0,
+      "verified": true,
+      "code_note": "정적 코드표: 파일 전체에서 각 심볼의 코드는 동일합니다.",
+      "symbols": [
+        {
+          "symbol": "0xEC",
+          "byte": 236,
+          "frequency": 14321,
+          "percentage": 11.648771758581422,
+          "code": "010",
+          "length": 3
+        },
+        {
+          "symbol": "0x20 (SPACE)",
+          "byte": 32,
+          "frequency": 12233,
+          "percentage": 9.950382300309094,
+          "code": "000",
+          "length": 3
+        },
+        {
+          "symbol": "0xEB",
+          "byte": 235,
+          "frequency": 11423,
+          "percentage": 9.291524320806896,
+          "code": "001",
+          "length": 3
+        },
+        {
+          "symbol": "0xED",
+          "byte": 237,
+          "frequency": 6880,
+          "percentage": 5.596225801203839,
+          "code": "0110",
+          "length": 4
+        },
+        {
+          "symbol": "0x95",
+          "byte": 149,
+          "frequency": 5223,
+          "percentage": 4.248413860419717,
+          "code": "01111",
+          "length": 5
+        },
+        {
+          "symbol": "0x84",
+          "byte": 132,
+          "frequency": 4399,
+          "percentage": 3.5781682121360014,
+          "code": "01110",
+          "length": 5
+        },
+        {
+          "symbol": "0x98",
+          "byte": 152,
+          "frequency": 3886,
+          "percentage": 3.1608914917846107,
+          "code": "10000",
+          "length": 5
+        },
+        {
+          "symbol": "0x9D",
+          "byte": 157,
+          "frequency": 3881,
+          "percentage": 3.1568244672197823,
+          "code": "10001",
+          "length": 5
+        },
+        {
+          "symbol": "0xEA",
+          "byte": 234,
+          "frequency": 3846,
+          "percentage": 3.128355295265983,
+          "code": "10011",
+          "length": 5
+        },
+        {
+          "symbol": "0xB0",
+          "byte": 176,
+          "frequency": 3678,
+          "percentage": 2.99170326988775,
+          "code": "10010",
+          "length": 5
+        },
+        {
+          "symbol": "0x9C",
+          "byte": 156,
+          "frequency": 2990,
+          "percentage": 2.4320806897673664,
+          "code": "101100",
+          "length": 6
+        },
+        {
+          "symbol": "0xB8",
+          "byte": 184,
+          "frequency": 2742,
+          "percentage": 2.2303562713518787,
+          "code": "110100",
+          "length": 6
+        },
+        {
+          "symbol": "0xA0",
+          "byte": 160,
+          "frequency": 2538,
+          "percentage": 2.0644216691068813,
+          "code": "101110",
+          "length": 6
+        },
+        {
+          "symbol": "0x80",
+          "byte": 128,
+          "frequency": 2525,
+          "percentage": 2.0538474052383275,
+          "code": "101000",
+          "length": 6
+        },
+        {
+          "symbol": "0xAC",
+          "byte": 172,
+          "frequency": 2455,
+          "percentage": 1.9969090613307305,
+          "code": "110001",
+          "length": 6
+        },
+        {
+          "symbol": "0xA4",
+          "byte": 164,
+          "frequency": 2426,
+          "percentage": 1.973320318854726,
+          "code": "101111",
+          "length": 6
+        },
+        {
+          "symbol": "0xB4",
+          "byte": 180,
+          "frequency": 2420,
+          "percentage": 1.9684398893769317,
+          "code": "110011",
+          "length": 6
+        },
+        {
+          "symbol": "0x94",
+          "byte": 148,
+          "frequency": 2251,
+          "percentage": 1.8309744590857329,
+          "code": "101011",
+          "length": 6
+        },
+        {
+          "symbol": "0x8B",
+          "byte": 139,
+          "frequency": 2181,
+          "percentage": 1.7740361151781359,
+          "code": "101001",
+          "length": 6
+        },
+        {
+          "symbol": "0xBC",
+          "byte": 188,
+          "frequency": 2108,
+          "percentage": 1.7146575565316415,
+          "code": "110101",
+          "length": 6
+        },
+        {
+          "symbol": "0xA5",
+          "byte": 165,
+          "frequency": 1875,
+          "percentage": 1.5251342118106395,
+          "code": "110000",
+          "length": 6
+        },
+        {
+          "symbol": "0x90",
+          "byte": 144,
+          "frequency": 1842,
+          "percentage": 1.4982918496827722,
+          "code": "101010",
+          "length": 6
+        },
+        {
+          "symbol": "0xB3",
+          "byte": 179,
+          "frequency": 1729,
+          "percentage": 1.406377094517651,
+          "code": "110010",
+          "length": 6
+        },
+        {
+          "symbol": "0x9E",
+          "byte": 158,
+          "frequency": 1620,
+          "percentage": 1.3177159590043925,
+          "code": "101101",
+          "length": 6
+        },
+        {
+          "symbol": "0x97",
+          "byte": 151,
+          "frequency": 1396,
+          "percentage": 1.1355132585000813,
+          "code": "1110001",
+          "length": 7
+        },
+        {
+          "symbol": "0x88",
+          "byte": 136,
+          "frequency": 1341,
+          "percentage": 1.0907759882869692,
+          "code": "1101101",
+          "length": 7
+        },
+        {
+          "symbol": "0x8A",
+          "byte": 138,
+          "frequency": 1257,
+          "percentage": 1.0224499755978527,
+          "code": "1101110",
+          "length": 7
+        },
+        {
+          "symbol": "0x2E (.)",
+          "byte": 46,
+          "frequency": 1168,
+          "percentage": 0.9500569383439076,
+          "code": "1101100",
+          "length": 7
+        },
+        {
+          "symbol": "0xB5",
+          "byte": 181,
+          "frequency": 1116,
+          "percentage": 0.9077598828696924,
+          "code": "1110101",
+          "length": 7
+        },
+        {
+          "symbol": "0x99",
+          "byte": 153,
+          "frequency": 1113,
+          "percentage": 0.9053196681307956,
+          "code": "1110010",
+          "length": 7
+        },
+        {
+          "symbol": "0x8C",
+          "byte": 140,
+          "frequency": 999,
+          "percentage": 0.8125915080527086,
+          "code": "1101111",
+          "length": 7
+        },
+        {
+          "symbol": "0xA9",
+          "byte": 169,
+          "frequency": 921,
+          "percentage": 0.7491459248413861,
+          "code": "1110100",
+          "length": 7
+        },
+        {
+          "symbol": "0xA1",
+          "byte": 161,
+          "frequency": 817,
+          "percentage": 0.6645518138929559,
+          "code": "1110011",
+          "length": 7
+        },
+        {
+          "symbol": "0xB6",
+          "byte": 182,
+          "frequency": 776,
+          "percentage": 0.6312022124613632,
+          "code": "1110110",
+          "length": 7
+        },
+        {
+          "symbol": "0x8F",
+          "byte": 143,
+          "frequency": 756,
+          "percentage": 0.6149341142020498,
+          "code": "1110000",
+          "length": 7
+        },
+        {
+          "symbol": "0xB2",
+          "byte": 178,
+          "frequency": 710,
+          "percentage": 0.5775174882056288,
+          "code": "11110111",
+          "length": 8
+        },
+        {
+          "symbol": "0xA7",
+          "byte": 167,
+          "frequency": 691,
+          "percentage": 0.562062794859281,
+          "code": "11110101",
+          "length": 8
+        },
+        {
+          "symbol": "0xBD",
+          "byte": 189,
+          "frequency": 690,
+          "percentage": 0.5612493899463153,
+          "code": "11111001",
+          "length": 8
+        },
+        {
+          "symbol": "0x8D",
+          "byte": 141,
+          "frequency": 647,
+          "percentage": 0.5262729786887913,
+          "code": "11110001",
+          "length": 8
+        },
+        {
+          "symbol": "0x91",
+          "byte": 145,
+          "frequency": 585,
+          "percentage": 0.4758418740849195,
+          "code": "11110010",
+          "length": 8
+        },
+        {
+          "symbol": "0xA8",
+          "byte": 168,
+          "frequency": 522,
+          "percentage": 0.42459736456808195,
+          "code": "11110110",
+          "length": 8
+        },
+        {
+          "symbol": "0xA6",
+          "byte": 166,
+          "frequency": 478,
+          "percentage": 0.3888075483975923,
+          "code": "11110100",
+          "length": 8
+        },
+        {
+          "symbol": "0xB9",
+          "byte": 185,
+          "frequency": 478,
+          "percentage": 0.3888075483975923,
+          "code": "11111000",
+          "length": 8
+        },
+        {
+          "symbol": "0x82",
+          "byte": 130,
+          "frequency": 475,
+          "percentage": 0.3863673336586953,
+          "code": "11101111",
+          "length": 8
+        },
+        {
+          "symbol": "0x81",
+          "byte": 129,
+          "frequency": 435,
+          "percentage": 0.3538311371400683,
+          "code": "11101110",
+          "length": 8
+        },
+        {
+          "symbol": "0x9A",
+          "byte": 154,
+          "frequency": 417,
+          "percentage": 0.3391898487066862,
+          "code": "11110011",
+          "length": 8
+        },
+        {
+          "symbol": "0x85",
+          "byte": 133,
+          "frequency": 392,
+          "percentage": 0.3188547258825443,
+          "code": "11110000",
+          "length": 8
+        },
+        {
+          "symbol": "0x9B",
+          "byte": 155,
+          "frequency": 349,
+          "percentage": 0.28387831462502033,
+          "code": "111111010",
+          "length": 9
+        },
+        {
+          "symbol": "0xB1",
+          "byte": 177,
+          "frequency": 343,
+          "percentage": 0.2789978851472263,
+          "code": "111111100",
+          "length": 9
+        },
+        {
+          "symbol": "0x93",
+          "byte": 147,
+          "frequency": 340,
+          "percentage": 0.27655767040832924,
+          "code": "111111000",
+          "length": 9
+        },
+        {
+          "symbol": "0x96",
+          "byte": 150,
+          "frequency": 309,
+          "percentage": 0.25134211810639334,
+          "code": "111111001",
+          "length": 9
+        },
+        {
+          "symbol": "0x83",
+          "byte": 131,
+          "frequency": 298,
+          "percentage": 0.24239466406377091,
+          "code": "111110100",
+          "length": 9
+        },
+        {
+          "symbol": "0x86",
+          "byte": 134,
+          "frequency": 245,
+          "percentage": 0.19928420367659022,
+          "code": "111110101",
+          "length": 9
+        },
+        {
+          "symbol": "0x89",
+          "byte": 137,
+          "frequency": 245,
+          "percentage": 0.19928420367659022,
+          "code": "111110110",
+          "length": 9
+        },
+        {
+          "symbol": "0x9F",
+          "byte": 159,
+          "frequency": 212,
+          "percentage": 0.17244184154872297,
+          "code": "111111011",
+          "length": 9
+        },
+        {
+          "symbol": "0x92",
+          "byte": 146,
+          "frequency": 181,
+          "percentage": 0.14722628924678705,
+          "code": "111110111",
+          "length": 9
+        },
+        {
+          "symbol": "0xBB",
+          "byte": 187,
+          "frequency": 171,
+          "percentage": 0.1390922401171303,
+          "code": "1111111110",
+          "length": 10
+        },
+        {
+          "symbol": "0x0A (\\n)",
+          "byte": 10,
+          "frequency": 129,
+          "percentage": 0.10492923377257199,
+          "code": "1111111010",
+          "length": 10
+        },
+        {
+          "symbol": "0xA2",
+          "byte": 162,
+          "frequency": 117,
+          "percentage": 0.0951683748169839,
+          "code": "1111111011",
+          "length": 10
+        },
+        {
+          "symbol": "0xB7",
+          "byte": 183,
+          "frequency": 116,
+          "percentage": 0.09435496990401822,
+          "code": "1111111101",
+          "length": 10
+        },
+        {
+          "symbol": "0xAA",
+          "byte": 170,
+          "frequency": 106,
+          "percentage": 0.08622092077436148,
+          "code": "1111111100",
+          "length": 10
+        },
+        {
+          "symbol": "0xA3",
+          "byte": 163,
+          "frequency": 64,
+          "percentage": 0.05205791442980316,
+          "code": "11111111110",
+          "length": 11
+        },
+        {
+          "symbol": "0xAE",
+          "byte": 174,
+          "frequency": 63,
+          "percentage": 0.05124450951683748,
+          "code": "11111111111",
+          "length": 11
+        }
+      ],
+      "status": "성공",
+      "failure_stage": "",
+      "error_type": "",
+      "error_category": "",
+      "error_message": "",
+      "preflight_explanation": "스트리밍 입력 지원(원본 122,940 B): 512MiB 제한을 제거했습니다. 전체 원본을 RAM에 적재하지 않으며 청크 단위로 처리합니다. 사전 검사는 실제 압축·복원 완료를 보장하지 않습니다. 특히 Python FGK는 1GB 처리에 매우 오래 걸릴 수 있습니다.",
+      "compression_algorithm_sec": 0.05991189999986091,
+      "compression_trace_peak_mib": null,
+      "compression_rss_peak_mib": null,
+      "compression_rss_increase_mib": null,
+      "decompression_algorithm_sec": 0.16724330000010923,
+      "decompression_trace_peak_mib": null,
+      "decompression_rss_peak_mib": null,
+      "decompression_rss_increase_mib": null,
+      "integrity_method": "원본과 바이트 직접 비교(스트리밍) + SHA-256 + 길이"
+    },
+    {
+      "source": "C:/Level3AIproject/test_corpus/AI 랜덤 생성 샘플/korean_50000.txt",
+      "archive_path": "C:\\Level3AIproject\\results\\3\\korean_50000_8fcabdc3_fgk.huf",
+      "restored_path": "C:\\Level3AIproject\\results\\3\\korean_50000_8fcabdc3_fgk.restored.txt",
+      "algorithm": "B · FGK 적응형 허프만",
+      "original_bytes": 122940,
+      "original_chars": 50000,
+      "compressed_bytes": 77719,
+      "header_bytes": 61,
+      "payload_bytes": 77658,
+      "payload_bits": 621261,
+      "symbol_types": 63,
+      "entropy": 5.0156389559424674,
+      "avg_payload_bits": 5.0533674963396775,
+      "avg_file_bits": 5.057361314462339,
+      "redundancy_bits": 0.037728540397210075,
+      "entropy_efficiency_pct": 99.25339804744978,
+      "saving_pct": 36.78298356922076,
+      "size_ratio": 1.5818525714432765,
+      "header_share_pct": 0.07848788584516013,
+      "compression_sec": 0.7180397999998149,
+      "decompression_sec": 0.6563059000000067,
+      "compression_mib_s": 0.16328443139087082,
+      "decompression_mib_s": 0.1786434046364404,
+      "mismatched_bytes": 0,
+      "loss_pct": 0.0,
+      "verified": true,
+      "code_note": "적응형 코드표: 표시된 코드는 처리 완료 시점의 최종 코드이며, 실제 전송 코드는 시점마다 달라집니다.",
+      "symbols": [
+        {
+          "symbol": "0xEC",
+          "byte": 236,
+          "frequency": 14321,
+          "percentage": 11.648771758581422,
+          "code": "011",
+          "length": 3
+        },
+        {
+          "symbol": "0x20 (SPACE)",
+          "byte": 32,
+          "frequency": 12233,
+          "percentage": 9.950382300309094,
+          "code": "001",
+          "length": 3
+        },
+        {
+          "symbol": "0xEB",
+          "byte": 235,
+          "frequency": 11423,
+          "percentage": 9.291524320806896,
+          "code": "000",
+          "length": 3
+        },
+        {
+          "symbol": "0xED",
+          "byte": 237,
+          "frequency": 6880,
+          "percentage": 5.596225801203839,
+          "code": "0101",
+          "length": 4
+        },
+        {
+          "symbol": "0x95",
+          "byte": 149,
+          "frequency": 5223,
+          "percentage": 4.248413860419717,
+          "code": "11101",
+          "length": 5
+        },
+        {
+          "symbol": "0x84",
+          "byte": 132,
+          "frequency": 4399,
+          "percentage": 3.5781682121360014,
+          "code": "10111",
+          "length": 5
+        },
+        {
+          "symbol": "0x98",
+          "byte": 152,
+          "frequency": 3886,
+          "percentage": 3.1608914917846107,
+          "code": "10101",
+          "length": 5
+        },
+        {
+          "symbol": "0x9D",
+          "byte": 157,
+          "frequency": 3881,
+          "percentage": 3.1568244672197823,
+          "code": "10100",
+          "length": 5
+        },
+        {
+          "symbol": "0xEA",
+          "byte": 234,
+          "frequency": 3846,
+          "percentage": 3.128355295265983,
+          "code": "10011",
+          "length": 5
+        },
+        {
+          "symbol": "0xB0",
+          "byte": 176,
+          "frequency": 3678,
+          "percentage": 2.99170326988775,
+          "code": "10001",
+          "length": 5
+        },
+        {
+          "symbol": "0x9C",
+          "byte": 156,
+          "frequency": 2990,
+          "percentage": 2.4320806897673664,
+          "code": "111111",
+          "length": 6
+        },
+        {
+          "symbol": "0xB8",
+          "byte": 184,
+          "frequency": 2742,
+          "percentage": 2.2303562713518787,
+          "code": "111101",
+          "length": 6
+        },
+        {
+          "symbol": "0xA0",
+          "byte": 160,
+          "frequency": 2538,
+          "percentage": 2.0644216691068813,
+          "code": "111000",
+          "length": 6
+        },
+        {
+          "symbol": "0x80",
+          "byte": 128,
+          "frequency": 2525,
+          "percentage": 2.0538474052383275,
+          "code": "110111",
+          "length": 6
+        },
+        {
+          "symbol": "0xAC",
+          "byte": 172,
+          "frequency": 2455,
+          "percentage": 1.9969090613307305,
+          "code": "110110",
+          "length": 6
+        },
+        {
+          "symbol": "0xA4",
+          "byte": 164,
+          "frequency": 2426,
+          "percentage": 1.973320318854726,
+          "code": "110101",
+          "length": 6
+        },
+        {
+          "symbol": "0xB4",
+          "byte": 180,
+          "frequency": 2420,
+          "percentage": 1.9684398893769317,
+          "code": "110100",
+          "length": 6
+        },
+        {
+          "symbol": "0x94",
+          "byte": 148,
+          "frequency": 2251,
+          "percentage": 1.8309744590857329,
+          "code": "110010",
+          "length": 6
+        },
+        {
+          "symbol": "0x8B",
+          "byte": 139,
+          "frequency": 2181,
+          "percentage": 1.7740361151781359,
+          "code": "110000",
+          "length": 6
+        },
+        {
+          "symbol": "0xBC",
+          "byte": 188,
+          "frequency": 2108,
+          "percentage": 1.7146575565316415,
+          "code": "101101",
+          "length": 6
+        },
+        {
+          "symbol": "0xA5",
+          "byte": 165,
+          "frequency": 1875,
+          "percentage": 1.5251342118106395,
+          "code": "100100",
+          "length": 6
+        },
+        {
+          "symbol": "0x90",
+          "byte": 144,
+          "frequency": 1842,
+          "percentage": 1.4982918496827722,
+          "code": "100001",
+          "length": 6
+        },
+        {
+          "symbol": "0xB3",
+          "byte": 179,
+          "frequency": 1729,
+          "percentage": 1.406377094517651,
+          "code": "010011",
+          "length": 6
+        },
+        {
+          "symbol": "0x9E",
+          "byte": 158,
+          "frequency": 1620,
+          "percentage": 1.3177159590043925,
+          "code": "010010",
+          "length": 6
+        },
+        {
+          "symbol": "0x97",
+          "byte": 151,
+          "frequency": 1396,
+          "percentage": 1.1355132585000813,
+          "code": "1111100",
+          "length": 7
+        },
+        {
+          "symbol": "0x88",
+          "byte": 136,
+          "frequency": 1341,
+          "percentage": 1.0907759882869692,
+          "code": "1111000",
+          "length": 7
+        },
+        {
+          "symbol": "0x8A",
+          "byte": 138,
+          "frequency": 1257,
+          "percentage": 1.0224499755978527,
+          "code": "1110010",
+          "length": 7
+        },
+        {
+          "symbol": "0x2E (.)",
+          "byte": 46,
+          "frequency": 1168,
+          "percentage": 0.9500569383439076,
+          "code": "1100110",
+          "length": 7
+        },
+        {
+          "symbol": "0xB5",
+          "byte": 181,
+          "frequency": 1116,
+          "percentage": 0.9077598828696924,
+          "code": "1100011",
+          "length": 7
+        },
+        {
+          "symbol": "0x99",
+          "byte": 153,
+          "frequency": 1113,
+          "percentage": 0.9053196681307956,
+          "code": "1100010",
+          "length": 7
+        },
+        {
+          "symbol": "0x8C",
+          "byte": 140,
+          "frequency": 999,
+          "percentage": 0.8125915080527086,
+          "code": "1011000",
+          "length": 7
+        },
+        {
+          "symbol": "0xA9",
+          "byte": 169,
+          "frequency": 921,
+          "percentage": 0.7491459248413861,
+          "code": "1000001",
+          "length": 7
+        },
+        {
+          "symbol": "0xA1",
+          "byte": 161,
+          "frequency": 817,
+          "percentage": 0.6645518138929559,
+          "code": "0100011",
+          "length": 7
+        },
+        {
+          "symbol": "0xB6",
+          "byte": 182,
+          "frequency": 776,
+          "percentage": 0.6312022124613632,
+          "code": "0100001",
+          "length": 7
+        },
+        {
+          "symbol": "0x8F",
+          "byte": 143,
+          "frequency": 756,
+          "percentage": 0.6149341142020498,
+          "code": "0100000",
+          "length": 7
+        },
+        {
+          "symbol": "0xB2",
+          "byte": 178,
+          "frequency": 710,
+          "percentage": 0.5775174882056288,
+          "code": "11111011",
+          "length": 8
+        },
+        {
+          "symbol": "0xA7",
+          "byte": 167,
+          "frequency": 691,
+          "percentage": 0.562062794859281,
+          "code": "11110011",
+          "length": 8
+        },
+        {
+          "symbol": "0xBD",
+          "byte": 189,
+          "frequency": 690,
+          "percentage": 0.5612493899463153,
+          "code": "11110010",
+          "length": 8
+        },
+        {
+          "symbol": "0x8D",
+          "byte": 141,
+          "frequency": 647,
+          "percentage": 0.5262729786887913,
+          "code": "11100110",
+          "length": 8
+        },
+        {
+          "symbol": "0x91",
+          "byte": 145,
+          "frequency": 585,
+          "percentage": 0.4758418740849195,
+          "code": "11001110",
+          "length": 8
+        },
+        {
+          "symbol": "0xA8",
+          "byte": 168,
+          "frequency": 522,
+          "percentage": 0.42459736456808195,
+          "code": "10110011",
+          "length": 8
+        },
+        {
+          "symbol": "0xA6",
+          "byte": 166,
+          "frequency": 478,
+          "percentage": 0.3888075483975923,
+          "code": "10010111",
+          "length": 8
+        },
+        {
+          "symbol": "0xB9",
+          "byte": 185,
+          "frequency": 478,
+          "percentage": 0.3888075483975923,
+          "code": "10010110",
+          "length": 8
+        },
+        {
+          "symbol": "0x82",
+          "byte": 130,
+          "frequency": 475,
+          "percentage": 0.3863673336586953,
+          "code": "10010101",
+          "length": 8
+        },
+        {
+          "symbol": "0x81",
+          "byte": 129,
+          "frequency": 435,
+          "percentage": 0.3538311371400683,
+          "code": "10000001",
+          "length": 8
+        },
+        {
+          "symbol": "0x9A",
+          "byte": 154,
+          "frequency": 417,
+          "percentage": 0.3391898487066862,
+          "code": "10000000",
+          "length": 8
+        },
+        {
+          "symbol": "0x85",
+          "byte": 133,
+          "frequency": 392,
+          "percentage": 0.3188547258825443,
+          "code": "01000100",
+          "length": 8
+        },
+        {
+          "symbol": "0x9B",
+          "byte": 155,
+          "frequency": 349,
+          "percentage": 0.28387831462502033,
+          "code": "111110101",
+          "length": 9
+        },
+        {
+          "symbol": "0xB1",
+          "byte": 177,
+          "frequency": 343,
+          "percentage": 0.2789978851472263,
+          "code": "111110100",
+          "length": 9
+        },
+        {
+          "symbol": "0x93",
+          "byte": 147,
+          "frequency": 340,
+          "percentage": 0.27655767040832924,
+          "code": "111001111",
+          "length": 9
+        },
+        {
+          "symbol": "0x96",
+          "byte": 150,
+          "frequency": 309,
+          "percentage": 0.25134211810639334,
+          "code": "111001110",
+          "length": 9
+        },
+        {
+          "symbol": "0x83",
+          "byte": 131,
+          "frequency": 298,
+          "percentage": 0.24239466406377091,
+          "code": "110011110",
+          "length": 9
+        },
+        {
+          "symbol": "0x86",
+          "byte": 134,
+          "frequency": 245,
+          "percentage": 0.19928420367659022,
+          "code": "101100100",
+          "length": 9
+        },
+        {
+          "symbol": "0x89",
+          "byte": 137,
+          "frequency": 245,
+          "percentage": 0.19928420367659022,
+          "code": "101100101",
+          "length": 9
+        },
+        {
+          "symbol": "0x9F",
+          "byte": 159,
+          "frequency": 212,
+          "percentage": 0.17244184154872297,
+          "code": "010001011",
+          "length": 9
+        },
+        {
+          "symbol": "0x92",
+          "byte": 146,
+          "frequency": 181,
+          "percentage": 0.14722628924678705,
+          "code": "010001010",
+          "length": 9
+        },
+        {
+          "symbol": "0xBB",
+          "byte": 187,
+          "frequency": 171,
+          "percentage": 0.1390922401171303,
+          "code": "1100111111",
+          "length": 10
+        },
+        {
+          "symbol": "0x0A (\\n)",
+          "byte": 10,
+          "frequency": 129,
+          "percentage": 0.10492923377257199,
+          "code": "1100111110",
+          "length": 10
+        },
+        {
+          "symbol": "0xA2",
+          "byte": 162,
+          "frequency": 117,
+          "percentage": 0.0951683748169839,
+          "code": "1001010010",
+          "length": 10
+        },
+        {
+          "symbol": "0xB7",
+          "byte": 183,
+          "frequency": 116,
+          "percentage": 0.09435496990401822,
+          "code": "1001010001",
+          "length": 10
+        },
+        {
+          "symbol": "0xAA",
+          "byte": 170,
+          "frequency": 106,
+          "percentage": 0.08622092077436148,
+          "code": "1001010000",
+          "length": 10
+        },
+        {
+          "symbol": "0xA3",
+          "byte": 163,
+          "frequency": 64,
+          "percentage": 0.05205791442980316,
+          "code": "10010100111",
+          "length": 11
+        },
+        {
+          "symbol": "0xAE",
+          "byte": 174,
+          "frequency": 63,
+          "percentage": 0.05124450951683748,
+          "code": "100101001101",
+          "length": 12
+        }
+      ],
+      "status": "성공",
+      "failure_stage": "",
+      "error_type": "",
+      "error_category": "",
+      "error_message": "",
+      "preflight_explanation": "스트리밍 입력 지원(원본 122,940 B): 512MiB 제한을 제거했습니다. 전체 원본을 RAM에 적재하지 않으며 청크 단위로 처리합니다. 사전 검사는 실제 압축·복원 완료를 보장하지 않습니다. 특히 Python FGK는 1GB 처리에 매우 오래 걸릴 수 있습니다.",
+      "compression_algorithm_sec": 0.7045829999999569,
+      "compression_trace_peak_mib": null,
+      "compression_rss_peak_mib": null,
+      "compression_rss_increase_mib": null,
+      "decompression_algorithm_sec": 0.6286089000000175,
+      "decompression_trace_peak_mib": null,
+      "decompression_rss_peak_mib": null,
+      "decompression_rss_increase_mib": null,
+      "integrity_method": "원본과 바이트 직접 비교(스트리밍) + SHA-256 + 길이"
+    },
+    {
+      "source": "C:/Level3AIproject/test_corpus/AI 랜덤 생성 샘플/korean_50000.txt",
+      "archive_path": "C:\\Level3AIproject\\results\\3\\korean_50000_8fcabdc3_practical.huf",
+      "restored_path": "C:\\Level3AIproject\\results\\3\\korean_50000_8fcabdc3_practical.restored.txt",
+      "algorithm": "C · 실용적 경량 LZ77",
+      "original_bytes": 122940,
+      "original_chars": 50000,
+      "compressed_bytes": 17863,
+      "header_bytes": 67,
+      "payload_bytes": 17796,
+      "payload_bits": 142364,
+      "symbol_types": 63,
+      "entropy": 5.0156389559424674,
+      "avg_payload_bits": 1.1579957702944526,
+      "avg_file_bits": 1.1623881568244672,
+      "redundancy_bits": -3.8576431856480147,
+      "entropy_efficiency_pct": 433.1310255707671,
+      "saving_pct": 85.47014803969417,
+      "size_ratio": 6.882382578514247,
+      "header_share_pct": 0.37507697475228124,
+      "compression_sec": 0.13660649999997077,
+      "decompression_sec": 0.06572030000006635,
+      "compression_mib_s": 0.8582660448734831,
+      "decompression_mib_s": 1.7839955152192857,
+      "mismatched_bytes": 0,
+      "loss_pct": 0.0,
+      "verified": true,
+      "code_note": "실용적 모드: 빠른 탐색을 위해 윈도우 크기를 제한한 경량 LZ77 방식을 사용합니다.",
+      "symbols": [
+        {
+          "symbol": "0xEC",
+          "byte": 236,
+          "frequency": 14321,
+          "percentage": 11.648771758581422,
+          "code": "—",
+          "length": null
+        },
+        {
+          "symbol": "0x20 (SPACE)",
+          "byte": 32,
+          "frequency": 12233,
+          "percentage": 9.950382300309094,
+          "code": "—",
+          "length": null
+        },
+        {
+          "symbol": "0xEB",
+          "byte": 235,
+          "frequency": 11423,
+          "percentage": 9.291524320806896,
+          "code": "—",
+          "length": null
+        },
+        {
+          "symbol": "0xED",
+          "byte": 237,
+          "frequency": 6880,
+          "percentage": 5.596225801203839,
+          "code": "—",
+          "length": null
+        },
+        {
+          "symbol": "0x95",
+          "byte": 149,
+          "frequency": 5223,
+          "percentage": 4.248413860419717,
+          "code": "—",
+          "length": null
+        },
+        {
+          "symbol": "0x84",
+          "byte": 132,
+          "frequency": 4399,
+          "percentage": 3.5781682121360014,
+          "code": "—",
+          "length": null
+        },
+        {
+          "symbol": "0x98",
+          "byte": 152,
+          "frequency": 3886,
+          "percentage": 3.1608914917846107,
+          "code": "—",
+          "length": null
+        },
+        {
+          "symbol": "0x9D",
+          "byte": 157,
+          "frequency": 3881,
+          "percentage": 3.1568244672197823,
+          "code": "—",
+          "length": null
+        },
+        {
+          "symbol": "0xEA",
+          "byte": 234,
+          "frequency": 3846,
+          "percentage": 3.128355295265983,
+          "code": "—",
+          "length": null
+        },
+        {
+          "symbol": "0xB0",
+          "byte": 176,
+          "frequency": 3678,
+          "percentage": 2.99170326988775,
+          "code": "—",
+          "length": null
+        },
+        {
+          "symbol": "0x9C",
+          "byte": 156,
+          "frequency": 2990,
+          "percentage": 2.4320806897673664,
+          "code": "—",
+          "length": null
+        },
+        {
+          "symbol": "0xB8",
+          "byte": 184,
+          "frequency": 2742,
+          "percentage": 2.2303562713518787,
+          "code": "—",
+          "length": null
+        },
+        {
+          "symbol": "0xA0",
+          "byte": 160,
+          "frequency": 2538,
+          "percentage": 2.0644216691068813,
+          "code": "—",
+          "length": null
+        },
+        {
+          "symbol": "0x80",
+          "byte": 128,
+          "frequency": 2525,
+          "percentage": 2.0538474052383275,
+          "code": "—",
+          "length": null
+        },
+        {
+          "symbol": "0xAC",
+          "byte": 172,
+          "frequency": 2455,
+          "percentage": 1.9969090613307305,
+          "code": "—",
+          "length": null
+        },
+        {
+          "symbol": "0xA4",
+          "byte": 164,
+          "frequency": 2426,
+          "percentage": 1.973320318854726,
+          "code": "—",
+          "length": null
+        },
+        {
+          "symbol": "0xB4",
+          "byte": 180,
+          "frequency": 2420,
+          "percentage": 1.9684398893769317,
+          "code": "—",
+          "length": null
+        },
+        {
+          "symbol": "0x94",
+          "byte": 148,
+          "frequency": 2251,
+          "percentage": 1.8309744590857329,
+          "code": "—",
+          "length": null
+        },
+        {
+          "symbol": "0x8B",
+          "byte": 139,
+          "frequency": 2181,
+          "percentage": 1.7740361151781359,
+          "code": "—",
+          "length": null
+        },
+        {
+          "symbol": "0xBC",
+          "byte": 188,
+          "frequency": 2108,
+          "percentage": 1.7146575565316415,
+          "code": "—",
+          "length": null
+        },
+        {
+          "symbol": "0xA5",
+          "byte": 165,
+          "frequency": 1875,
+          "percentage": 1.5251342118106395,
+          "code": "—",
+          "length": null
+        },
+        {
+          "symbol": "0x90",
+          "byte": 144,
+          "frequency": 1842,
+          "percentage": 1.4982918496827722,
+          "code": "—",
+          "length": null
+        },
+        {
+          "symbol": "0xB3",
+          "byte": 179,
+          "frequency": 1729,
+          "percentage": 1.406377094517651,
+          "code": "—",
+          "length": null
+        },
+        {
+          "symbol": "0x9E",
+          "byte": 158,
+          "frequency": 1620,
+          "percentage": 1.3177159590043925,
+          "code": "—",
+          "length": null
+        },
+        {
+          "symbol": "0x97",
+          "byte": 151,
+          "frequency": 1396,
+          "percentage": 1.1355132585000813,
+          "code": "—",
+          "length": null
+        },
+        {
+          "symbol": "0x88",
+          "byte": 136,
+          "frequency": 1341,
+          "percentage": 1.0907759882869692,
+          "code": "—",
+          "length": null
+        },
+        {
+          "symbol": "0x8A",
+          "byte": 138,
+          "frequency": 1257,
+          "percentage": 1.0224499755978527,
+          "code": "—",
+          "length": null
+        },
+        {
+          "symbol": "0x2E (.)",
+          "byte": 46,
+          "frequency": 1168,
+          "percentage": 0.9500569383439076,
+          "code": "—",
+          "length": null
+        },
+        {
+          "symbol": "0xB5",
+          "byte": 181,
+          "frequency": 1116,
+          "percentage": 0.9077598828696924,
+          "code": "—",
+          "length": null
+        },
+        {
+          "symbol": "0x99",
+          "byte": 153,
+          "frequency": 1113,
+          "percentage": 0.9053196681307956,
+          "code": "—",
+          "length": null
+        },
+        {
+          "symbol": "0x8C",
+          "byte": 140,
+          "frequency": 999,
+          "percentage": 0.8125915080527086,
+          "code": "—",
+          "length": null
+        },
+        {
+          "symbol": "0xA9",
+          "byte": 169,
+          "frequency": 921,
+          "percentage": 0.7491459248413861,
+          "code": "—",
+          "length": null
+        },
+        {
+          "symbol": "0xA1",
+          "byte": 161,
+          "frequency": 817,
+          "percentage": 0.6645518138929559,
+          "code": "—",
+          "length": null
+        },
+        {
+          "symbol": "0xB6",
+          "byte": 182,
+          "frequency": 776,
+          "percentage": 0.6312022124613632,
+          "code": "—",
+          "length": null
+        },
+        {
+          "symbol": "0x8F",
+          "byte": 143,
+          "frequency": 756,
+          "percentage": 0.6149341142020498,
+          "code": "—",
+          "length": null
+        },
+        {
+          "symbol": "0xB2",
+          "byte": 178,
+          "frequency": 710,
+          "percentage": 0.5775174882056288,
+          "code": "—",
+          "length": null
+        },
+        {
+          "symbol": "0xA7",
+          "byte": 167,
+          "frequency": 691,
+          "percentage": 0.562062794859281,
+          "code": "—",
+          "length": null
+        },
+        {
+          "symbol": "0xBD",
+          "byte": 189,
+          "frequency": 690,
+          "percentage": 0.5612493899463153,
+          "code": "—",
+          "length": null
+        },
+        {
+          "symbol": "0x8D",
+          "byte": 141,
+          "frequency": 647,
+          "percentage": 0.5262729786887913,
+          "code": "—",
+          "length": null
+        },
+        {
+          "symbol": "0x91",
+          "byte": 145,
+          "frequency": 585,
+          "percentage": 0.4758418740849195,
+          "code": "—",
+          "length": null
+        },
+        {
+          "symbol": "0xA8",
+          "byte": 168,
+          "frequency": 522,
+          "percentage": 0.42459736456808195,
+          "code": "—",
+          "length": null
+        },
+        {
+          "symbol": "0xA6",
+          "byte": 166,
+          "frequency": 478,
+          "percentage": 0.3888075483975923,
+          "code": "—",
+          "length": null
+        },
+        {
+          "symbol": "0xB9",
+          "byte": 185,
+          "frequency": 478,
+          "percentage": 0.3888075483975923,
+          "code": "—",
+          "length": null
+        },
+        {
+          "symbol": "0x82",
+          "byte": 130,
+          "frequency": 475,
+          "percentage": 0.3863673336586953,
+          "code": "—",
+          "length": null
+        },
+        {
+          "symbol": "0x81",
+          "byte": 129,
+          "frequency": 435,
+          "percentage": 0.3538311371400683,
+          "code": "—",
+          "length": null
+        },
+        {
+          "symbol": "0x9A",
+          "byte": 154,
+          "frequency": 417,
+          "percentage": 0.3391898487066862,
+          "code": "—",
+          "length": null
+        },
+        {
+          "symbol": "0x85",
+          "byte": 133,
+          "frequency": 392,
+          "percentage": 0.3188547258825443,
+          "code": "—",
+          "length": null
+        },
+        {
+          "symbol": "0x9B",
+          "byte": 155,
+          "frequency": 349,
+          "percentage": 0.28387831462502033,
+          "code": "—",
+          "length": null
+        },
+        {
+          "symbol": "0xB1",
+          "byte": 177,
+          "frequency": 343,
+          "percentage": 0.2789978851472263,
+          "code": "—",
+          "length": null
+        },
+        {
+          "symbol": "0x93",
+          "byte": 147,
+          "frequency": 340,
+          "percentage": 0.27655767040832924,
+          "code": "—",
+          "length": null
+        },
+        {
+          "symbol": "0x96",
+          "byte": 150,
+          "frequency": 309,
+          "percentage": 0.25134211810639334,
+          "code": "—",
+          "length": null
+        },
+        {
+          "symbol": "0x83",
+          "byte": 131,
+          "frequency": 298,
+          "percentage": 0.24239466406377091,
+          "code": "—",
+          "length": null
+        },
+        {
+          "symbol": "0x86",
+          "byte": 134,
+          "frequency": 245,
+          "percentage": 0.19928420367659022,
+          "code": "—",
+          "length": null
+        },
+        {
+          "symbol": "0x89",
+          "byte": 137,
+          "frequency": 245,
+          "percentage": 0.19928420367659022,
+          "code": "—",
+          "length": null
+        },
+        {
+          "symbol": "0x9F",
+          "byte": 159,
+          "frequency": 212,
+          "percentage": 0.17244184154872297,
+          "code": "—",
+          "length": null
+        },
+        {
+          "symbol": "0x92",
+          "byte": 146,
+          "frequency": 181,
+          "percentage": 0.14722628924678705,
+          "code": "—",
+          "length": null
+        },
+        {
+          "symbol": "0xBB",
+          "byte": 187,
+          "frequency": 171,
+          "percentage": 0.1390922401171303,
+          "code": "—",
+          "length": null
+        },
+        {
+          "symbol": "0x0A (\\n)",
+          "byte": 10,
+          "frequency": 129,
+          "percentage": 0.10492923377257199,
+          "code": "—",
+          "length": null
+        },
+        {
+          "symbol": "0xA2",
+          "byte": 162,
+          "frequency": 117,
+          "percentage": 0.0951683748169839,
+          "code": "—",
+          "length": null
+        },
+        {
+          "symbol": "0xB7",
+          "byte": 183,
+          "frequency": 116,
+          "percentage": 0.09435496990401822,
+          "code": "—",
+          "length": null
+        },
+        {
+          "symbol": "0xAA",
+          "byte": 170,
+          "frequency": 106,
+          "percentage": 0.08622092077436148,
+          "code": "—",
+          "length": null
+        },
+        {
+          "symbol": "0xA3",
+          "byte": 163,
+          "frequency": 64,
+          "percentage": 0.05205791442980316,
+          "code": "—",
+          "length": null
+        },
+        {
+          "symbol": "0xAE",
+          "byte": 174,
+          "frequency": 63,
+          "percentage": 0.05124450951683748,
+          "code": "—",
+          "length": null
+        }
+      ],
+      "status": "성공",
+      "failure_stage": "",
+      "error_type": "",
+      "error_category": "",
+      "error_message": "",
+      "preflight_explanation": "스트리밍 입력 지원(원본 122,940 B): 512MiB 제한을 제거했습니다. 전체 원본을 RAM에 적재하지 않으며 청크 단위로 처리합니다. 사전 검사는 실제 압축·복원 완료를 보장하지 않습니다. 특히 Python FGK는 1GB 처리에 매우 오래 걸릴 수 있습니다.",
+      "compression_algorithm_sec": 0.10648280000009436,
+      "compression_trace_peak_mib": null,
+      "compression_rss_peak_mib": null,
+      "compression_rss_increase_mib": null,
+      "decompression_algorithm_sec": 0.06072210000002087,
+      "decompression_trace_peak_mib": null,
+      "decompression_rss_peak_mib": null,
+      "decompression_rss_increase_mib": null,
+      "integrity_method": "원본과 바이트 직접 비교(스트리밍) + SHA-256 + 길이"
+    },
+    {
+      "source": "C:/Level3AIproject/test_corpus/AI 랜덤 생성 샘플/korean_500000.txt",
+      "archive_path": "C:\\Level3AIproject\\results\\3\\korean_500000_20870cd3_static.huf",
+      "restored_path": "C:\\Level3AIproject\\results\\3\\korean_500000_20870cd3_static.restored.txt",
+      "algorithm": "A · 정적 허프만 (힙 + 정규형)",
+      "original_bytes": 1229372,
+      "original_chars": 500000,
+      "compressed_bytes": 775931,
+      "header_bytes": 320,
+      "payload_bytes": 775611,
+      "payload_bits": 6204882,
+      "symbol_types": 63,
+      "entropy": 5.015820365163316,
+      "avg_payload_bits": 5.047196454775284,
+      "avg_file_bits": 5.049283699319653,
+      "redundancy_bits": 0.03137608961196747,
+      "entropy_efficiency_pct": 99.37834617904993,
+      "saving_pct": 36.88395375850434,
+      "size_ratio": 1.584383147470587,
+      "header_share_pct": 0.041240780430218664,
+      "compression_sec": 0.6296320999999807,
+      "decompression_sec": 1.7072769999999764,
+      "compression_mib_s": 1.8620723144658926,
+      "decompression_mib_s": 0.6867195550042556,
+      "mismatched_bytes": 0,
+      "loss_pct": 0.0,
+      "verified": true,
+      "code_note": "정적 코드표: 파일 전체에서 각 심볼의 코드는 동일합니다.",
+      "symbols": [
+        {
+          "symbol": "0xEC",
+          "byte": 236,
+          "frequency": 142959,
+          "percentage": 11.628620141015087,
+          "code": "010",
+          "length": 3
+        },
+        {
+          "symbol": "0x20 (SPACE)",
+          "byte": 32,
+          "frequency": 122336,
+          "percentage": 9.95109698284978,
+          "code": "000",
+          "length": 3
+        },
+        {
+          "symbol": "0xEB",
+          "byte": 235,
+          "frequency": 114373,
+          "percentage": 9.303367898406666,
+          "code": "001",
+          "length": 3
+        },
+        {
+          "symbol": "0xED",
+          "byte": 237,
+          "frequency": 68806,
+          "percentage": 5.596841314101835,
+          "code": "0110",
+          "length": 4
+        },
+        {
+          "symbol": "0x95",
+          "byte": 149,
+          "frequency": 52235,
+          "percentage": 4.248917333402746,
+          "code": "01111",
+          "length": 5
+        },
+        {
+          "symbol": "0x84",
+          "byte": 132,
+          "frequency": 43869,
+          "percentage": 3.5684072843695804,
+          "code": "01110",
+          "length": 5
+        },
+        {
+          "symbol": "0x98",
+          "byte": 152,
+          "frequency": 38869,
+          "percentage": 3.1616955648900413,
+          "code": "10000",
+          "length": 5
+        },
+        {
+          "symbol": "0x9D",
+          "byte": 157,
+          "frequency": 38763,
+          "percentage": 3.1530732764370755,
+          "code": "10001",
+          "length": 5
+        },
+        {
+          "symbol": "0xEA",
+          "byte": 234,
+          "frequency": 38548,
+          "percentage": 3.135584672499455,
+          "code": "10011",
+          "length": 5
+        },
+        {
+          "symbol": "0xB0",
+          "byte": 176,
+          "frequency": 36846,
+          "percentage": 2.99714000318862,
+          "code": "10010",
+          "length": 5
+        },
+        {
+          "symbol": "0x9C",
+          "byte": 156,
+          "frequency": 29844,
+          "percentage": 2.427580911229473,
+          "code": "101100",
+          "length": 6
+        },
+        {
+          "symbol": "0xB8",
+          "byte": 184,
+          "frequency": 27504,
+          "percentage": 2.237239826513049,
+          "code": "110100",
+          "length": 6
+        },
+        {
+          "symbol": "0xA0",
+          "byte": 160,
+          "frequency": 25380,
+          "percentage": 2.064468688078141,
+          "code": "101110",
+          "length": 6
+        },
+        {
+          "symbol": "0x80",
+          "byte": 128,
+          "frequency": 25270,
+          "percentage": 2.055521030249591,
+          "code": "101000",
+          "length": 6
+        },
+        {
+          "symbol": "0xAC",
+          "byte": 172,
+          "frequency": 24541,
+          "percentage": 1.996222461549474,
+          "code": "110001",
+          "length": 6
+        },
+        {
+          "symbol": "0xA4",
+          "byte": 164,
+          "frequency": 24218,
+          "percentage": 1.969948884471096,
+          "code": "101111",
+          "length": 6
+        },
+        {
+          "symbol": "0xB4",
+          "byte": 180,
+          "frequency": 24214,
+          "percentage": 1.9696235150955124,
+          "code": "110011",
+          "length": 6
+        },
+        {
+          "symbol": "0x94",
+          "byte": 148,
+          "frequency": 22516,
+          "percentage": 1.8315042151602605,
+          "code": "101011",
+          "length": 6
+        },
+        {
+          "symbol": "0x8B",
+          "byte": 139,
+          "frequency": 21773,
+          "percentage": 1.7710668536456011,
+          "code": "101001",
+          "length": 6
+        },
+        {
+          "symbol": "0xBC",
+          "byte": 188,
+          "frequency": 21127,
+          "percentage": 1.7185196994888445,
+          "code": "110101",
+          "length": 6
+        },
+        {
+          "symbol": "0xA5",
+          "byte": 165,
+          "frequency": 18794,
+          "percentage": 1.5287480111796918,
+          "code": "110000",
+          "length": 6
+        },
+        {
+          "symbol": "0x90",
+          "byte": 144,
+          "frequency": 18473,
+          "percentage": 1.5026371187891054,
+          "code": "101010",
+          "length": 6
+        },
+        {
+          "symbol": "0xB3",
+          "byte": 179,
+          "frequency": 17309,
+          "percentage": 1.4079546304942685,
+          "code": "110010",
+          "length": 6
+        },
+        {
+          "symbol": "0x9E",
+          "byte": 158,
+          "frequency": 16246,
+          "percentage": 1.3214877189329186,
+          "code": "101101",
+          "length": 6
+        },
+        {
+          "symbol": "0x97",
+          "byte": 151,
+          "frequency": 13918,
+          "percentage": 1.1321227423432452,
+          "code": "1110001",
+          "length": 7
+        },
+        {
+          "symbol": "0x88",
+          "byte": 136,
+          "frequency": 13381,
+          "percentage": 1.0884419036711426,
+          "code": "1101101",
+          "length": 7
+        },
+        {
+          "symbol": "0x8A",
+          "byte": 138,
+          "frequency": 12536,
+          "percentage": 1.0197076230791005,
+          "code": "1101110",
+          "length": 7
+        },
+        {
+          "symbol": "0x2E (.)",
+          "byte": 46,
+          "frequency": 11681,
+          "percentage": 0.9501599190480994,
+          "code": "1101100",
+          "length": 7
+        },
+        {
+          "symbol": "0xB5",
+          "byte": 181,
+          "frequency": 11151,
+          "percentage": 0.9070484767832682,
+          "code": "1110101",
+          "length": 7
+        },
+        {
+          "symbol": "0x99",
+          "byte": 153,
+          "frequency": 11149,
+          "percentage": 0.9068857920954764,
+          "code": "1110010",
+          "length": 7
+        },
+        {
+          "symbol": "0x8C",
+          "byte": 140,
+          "frequency": 9984,
+          "percentage": 0.8121219614567438,
+          "code": "1101111",
+          "length": 7
+        },
+        {
+          "symbol": "0xA9",
+          "byte": 169,
+          "frequency": 9238,
+          "percentage": 0.7514405729103966,
+          "code": "1110100",
+          "length": 7
+        },
+        {
+          "symbol": "0xA1",
+          "byte": 161,
+          "frequency": 8177,
+          "percentage": 0.6651363460368384,
+          "code": "1110011",
+          "length": 7
+        },
+        {
+          "symbol": "0xB6",
+          "byte": 182,
+          "frequency": 7750,
+          "percentage": 0.6304031651932857,
+          "code": "1110110",
+          "length": 7
+        },
+        {
+          "symbol": "0x8F",
+          "byte": 143,
+          "frequency": 7540,
+          "percentage": 0.613321272975145,
+          "code": "1110000",
+          "length": 7
+        },
+        {
+          "symbol": "0xB2",
+          "byte": 178,
+          "frequency": 7117,
+          "percentage": 0.578913461507176,
+          "code": "11110111",
+          "length": 8
+        },
+        {
+          "symbol": "0xBD",
+          "byte": 189,
+          "frequency": 6904,
+          "percentage": 0.5615875422573476,
+          "code": "11111001",
+          "length": 8
+        },
+        {
+          "symbol": "0xA7",
+          "byte": 167,
+          "frequency": 6903,
+          "percentage": 0.5615061999134517,
+          "code": "11110101",
+          "length": 8
+        },
+        {
+          "symbol": "0x8D",
+          "byte": 141,
+          "frequency": 6478,
+          "percentage": 0.5269357037576909,
+          "code": "11110001",
+          "length": 8
+        },
+        {
+          "symbol": "0x91",
+          "byte": 145,
+          "frequency": 5841,
+          "percentage": 0.47512063069599764,
+          "code": "11110010",
+          "length": 8
+        },
+        {
+          "symbol": "0xA8",
+          "byte": 168,
+          "frequency": 5203,
+          "percentage": 0.42322421529040843,
+          "code": "11110110",
+          "length": 8
+        },
+        {
+          "symbol": "0xA6",
+          "byte": 166,
+          "frequency": 4783,
+          "percentage": 0.3890604308541271,
+          "code": "11110100",
+          "length": 8
+        },
+        {
+          "symbol": "0xB9",
+          "byte": 185,
+          "frequency": 4780,
+          "percentage": 0.3888164038224394,
+          "code": "11111000",
+          "length": 8
+        },
+        {
+          "symbol": "0x82",
+          "byte": 130,
+          "frequency": 4778,
+          "percentage": 0.38865371913464763,
+          "code": "11101111",
+          "length": 8
+        },
+        {
+          "symbol": "0x81",
+          "byte": 129,
+          "frequency": 4354,
+          "percentage": 0.3541645653227827,
+          "code": "11101110",
+          "length": 8
+        },
+        {
+          "symbol": "0x9A",
+          "byte": 154,
+          "frequency": 4145,
+          "percentage": 0.3371640154485379,
+          "code": "11110011",
+          "length": 8
+        },
+        {
+          "symbol": "0x85",
+          "byte": 133,
+          "frequency": 3930,
+          "percentage": 0.3196754115109178,
+          "code": "11110000",
+          "length": 8
+        },
+        {
+          "symbol": "0x9B",
+          "byte": 155,
+          "frequency": 3499,
+          "percentage": 0.2846168612917815,
+          "code": "111111010",
+          "length": 9
+        },
+        {
+          "symbol": "0xB1",
+          "byte": 177,
+          "frequency": 3402,
+          "percentage": 0.27672665393387846,
+          "code": "111111100",
+          "length": 9
+        },
+        {
+          "symbol": "0x93",
+          "byte": 147,
+          "frequency": 3397,
+          "percentage": 0.27631994221439893,
+          "code": "111111000",
+          "length": 9
+        },
+        {
+          "symbol": "0x96",
+          "byte": 150,
+          "frequency": 3082,
+          "percentage": 0.25069710388718797,
+          "code": "111111001",
+          "length": 9
+        },
+        {
+          "symbol": "0x83",
+          "byte": 131,
+          "frequency": 2974,
+          "percentage": 0.2419121307464299,
+          "code": "111110100",
+          "length": 9
+        },
+        {
+          "symbol": "0x89",
+          "byte": 137,
+          "frequency": 2443,
+          "percentage": 0.1987193461377028,
+          "code": "111110110",
+          "length": 9
+        },
+        {
+          "symbol": "0x86",
+          "byte": 134,
+          "frequency": 2442,
+          "percentage": 0.19863800379380692,
+          "code": "111110101",
+          "length": 9
+        },
+        {
+          "symbol": "0x9F",
+          "byte": 159,
+          "frequency": 2124,
+          "percentage": 0.17277113843490824,
+          "code": "111111011",
+          "length": 9
+        },
+        {
+          "symbol": "0x92",
+          "byte": 146,
+          "frequency": 1805,
+          "percentage": 0.14682293073211364,
+          "code": "111110111",
+          "length": 9
+        },
+        {
+          "symbol": "0xBB",
+          "byte": 187,
+          "frequency": 1699,
+          "percentage": 0.1382006422791474,
+          "code": "1111111110",
+          "length": 10
+        },
+        {
+          "symbol": "0x0A (\\n)",
+          "byte": 10,
+          "frequency": 1297,
+          "percentage": 0.10550102003299246,
+          "code": "1111111010",
+          "length": 10
+        },
+        {
+          "symbol": "0xB7",
+          "byte": 183,
+          "frequency": 1169,
+          "percentage": 0.09508920001431626,
+          "code": "1111111101",
+          "length": 10
+        },
+        {
+          "symbol": "0xA2",
+          "byte": 162,
+          "frequency": 1168,
+          "percentage": 0.09500785767042035,
+          "code": "1111111011",
+          "length": 10
+        },
+        {
+          "symbol": "0xAA",
+          "byte": 170,
+          "frequency": 1062,
+          "percentage": 0.08638556921745412,
+          "code": "1111111100",
+          "length": 10
+        },
+        {
+          "symbol": "0xA3",
+          "byte": 163,
+          "frequency": 638,
+          "percentage": 0.051896415405589195,
+          "code": "11111111110",
+          "length": 11
+        },
+        {
+          "symbol": "0xAE",
+          "byte": 174,
+          "frequency": 637,
+          "percentage": 0.051815073061693286,
+          "code": "11111111111",
+          "length": 11
+        }
+      ],
+      "status": "성공",
+      "failure_stage": "",
+      "error_type": "",
+      "error_category": "",
+      "error_message": "",
+      "preflight_explanation": "스트리밍 입력 지원(원본 1,229,372 B): 512MiB 제한을 제거했습니다. 전체 원본을 RAM에 적재하지 않으며 청크 단위로 처리합니다. 사전 검사는 실제 압축·복원 완료를 보장하지 않습니다. 특히 Python FGK는 1GB 처리에 매우 오래 걸릴 수 있습니다.",
+      "compression_algorithm_sec": 0.5732259999999769,
+      "compression_trace_peak_mib": null,
+      "compression_rss_peak_mib": null,
+      "compression_rss_increase_mib": null,
+      "decompression_algorithm_sec": 1.6875113999999485,
+      "decompression_trace_peak_mib": null,
+      "decompression_rss_peak_mib": null,
+      "decompression_rss_increase_mib": null,
+      "integrity_method": "원본과 바이트 직접 비교(스트리밍) + SHA-256 + 길이"
+    },
+    {
+      "source": "C:/Level3AIproject/test_corpus/AI 랜덤 생성 샘플/korean_500000.txt",
+      "archive_path": "C:\\Level3AIproject\\results\\3\\korean_500000_20870cd3_fgk.huf",
+      "restored_path": "C:\\Level3AIproject\\results\\3\\korean_500000_20870cd3_fgk.restored.txt",
+      "algorithm": "B · FGK 적응형 허프만",
+      "original_bytes": 1229372,
+      "original_chars": 500000,
+      "compressed_bytes": 775839,
+      "header_bytes": 61,
+      "payload_bytes": 775778,
+      "payload_bits": 6206224,
+      "symbol_types": 63,
+      "entropy": 5.015820365163316,
+      "avg_payload_bits": 5.048288069030367,
+      "avg_file_bits": 5.048685019668579,
+      "redundancy_bits": 0.032467703867050446,
+      "entropy_efficiency_pct": 99.35685714794627,
+      "saving_pct": 36.891437254142765,
+      "size_ratio": 1.5845710256896084,
+      "header_share_pct": 0.007862455999247267,
+      "compression_sec": 6.286309600000095,
+      "decompression_sec": 6.649142399999846,
+      "compression_mib_s": 0.1865037798502585,
+      "decompression_mib_s": 0.176326574342732,
+      "mismatched_bytes": 0,
+      "loss_pct": 0.0,
+      "verified": true,
+      "code_note": "적응형 코드표: 표시된 코드는 처리 완료 시점의 최종 코드이며, 실제 전송 코드는 시점마다 달라집니다.",
+      "symbols": [
+        {
+          "symbol": "0xEC",
+          "byte": 236,
+          "frequency": 142959,
+          "percentage": 11.628620141015087,
+          "code": "011",
+          "length": 3
+        },
+        {
+          "symbol": "0x20 (SPACE)",
+          "byte": 32,
+          "frequency": 122336,
+          "percentage": 9.95109698284978,
+          "code": "001",
+          "length": 3
+        },
+        {
+          "symbol": "0xEB",
+          "byte": 235,
+          "frequency": 114373,
+          "percentage": 9.303367898406666,
+          "code": "000",
+          "length": 3
+        },
+        {
+          "symbol": "0xED",
+          "byte": 237,
+          "frequency": 68806,
+          "percentage": 5.596841314101835,
+          "code": "0101",
+          "length": 4
+        },
+        {
+          "symbol": "0x95",
+          "byte": 149,
+          "frequency": 52235,
+          "percentage": 4.248917333402746,
+          "code": "11101",
+          "length": 5
+        },
+        {
+          "symbol": "0x84",
+          "byte": 132,
+          "frequency": 43869,
+          "percentage": 3.5684072843695804,
+          "code": "10111",
+          "length": 5
+        },
+        {
+          "symbol": "0x98",
+          "byte": 152,
+          "frequency": 38869,
+          "percentage": 3.1616955648900413,
+          "code": "10101",
+          "length": 5
+        },
+        {
+          "symbol": "0x9D",
+          "byte": 157,
+          "frequency": 38763,
+          "percentage": 3.1530732764370755,
+          "code": "10100",
+          "length": 5
+        },
+        {
+          "symbol": "0xEA",
+          "byte": 234,
+          "frequency": 38548,
+          "percentage": 3.135584672499455,
+          "code": "10011",
+          "length": 5
+        },
+        {
+          "symbol": "0xB0",
+          "byte": 176,
+          "frequency": 36846,
+          "percentage": 2.99714000318862,
+          "code": "10001",
+          "length": 5
+        },
+        {
+          "symbol": "0x9C",
+          "byte": 156,
+          "frequency": 29844,
+          "percentage": 2.427580911229473,
+          "code": "111111",
+          "length": 6
+        },
+        {
+          "symbol": "0xB8",
+          "byte": 184,
+          "frequency": 27504,
+          "percentage": 2.237239826513049,
+          "code": "111101",
+          "length": 6
+        },
+        {
+          "symbol": "0xA0",
+          "byte": 160,
+          "frequency": 25380,
+          "percentage": 2.064468688078141,
+          "code": "111000",
+          "length": 6
+        },
+        {
+          "symbol": "0x80",
+          "byte": 128,
+          "frequency": 25270,
+          "percentage": 2.055521030249591,
+          "code": "110111",
+          "length": 6
+        },
+        {
+          "symbol": "0xAC",
+          "byte": 172,
+          "frequency": 24541,
+          "percentage": 1.996222461549474,
+          "code": "110110",
+          "length": 6
+        },
+        {
+          "symbol": "0xA4",
+          "byte": 164,
+          "frequency": 24218,
+          "percentage": 1.969948884471096,
+          "code": "110101",
+          "length": 6
+        },
+        {
+          "symbol": "0xB4",
+          "byte": 180,
+          "frequency": 24214,
+          "percentage": 1.9696235150955124,
+          "code": "110100",
+          "length": 6
+        },
+        {
+          "symbol": "0x94",
+          "byte": 148,
+          "frequency": 22516,
+          "percentage": 1.8315042151602605,
+          "code": "110010",
+          "length": 6
+        },
+        {
+          "symbol": "0x8B",
+          "byte": 139,
+          "frequency": 21773,
+          "percentage": 1.7710668536456011,
+          "code": "110000",
+          "length": 6
+        },
+        {
+          "symbol": "0xBC",
+          "byte": 188,
+          "frequency": 21127,
+          "percentage": 1.7185196994888445,
+          "code": "101101",
+          "length": 6
+        },
+        {
+          "symbol": "0xA5",
+          "byte": 165,
+          "frequency": 18794,
+          "percentage": 1.5287480111796918,
+          "code": "100100",
+          "length": 6
+        },
+        {
+          "symbol": "0x90",
+          "byte": 144,
+          "frequency": 18473,
+          "percentage": 1.5026371187891054,
+          "code": "100001",
+          "length": 6
+        },
+        {
+          "symbol": "0xB3",
+          "byte": 179,
+          "frequency": 17309,
+          "percentage": 1.4079546304942685,
+          "code": "010011",
+          "length": 6
+        },
+        {
+          "symbol": "0x9E",
+          "byte": 158,
+          "frequency": 16246,
+          "percentage": 1.3214877189329186,
+          "code": "010010",
+          "length": 6
+        },
+        {
+          "symbol": "0x97",
+          "byte": 151,
+          "frequency": 13918,
+          "percentage": 1.1321227423432452,
+          "code": "1111100",
+          "length": 7
+        },
+        {
+          "symbol": "0x88",
+          "byte": 136,
+          "frequency": 13381,
+          "percentage": 1.0884419036711426,
+          "code": "1111000",
+          "length": 7
+        },
+        {
+          "symbol": "0x8A",
+          "byte": 138,
+          "frequency": 12536,
+          "percentage": 1.0197076230791005,
+          "code": "1110010",
+          "length": 7
+        },
+        {
+          "symbol": "0x2E (.)",
+          "byte": 46,
+          "frequency": 11681,
+          "percentage": 0.9501599190480994,
+          "code": "1100110",
+          "length": 7
+        },
+        {
+          "symbol": "0xB5",
+          "byte": 181,
+          "frequency": 11151,
+          "percentage": 0.9070484767832682,
+          "code": "1100011",
+          "length": 7
+        },
+        {
+          "symbol": "0x99",
+          "byte": 153,
+          "frequency": 11149,
+          "percentage": 0.9068857920954764,
+          "code": "1100010",
+          "length": 7
+        },
+        {
+          "symbol": "0x8C",
+          "byte": 140,
+          "frequency": 9984,
+          "percentage": 0.8121219614567438,
+          "code": "1011000",
+          "length": 7
+        },
+        {
+          "symbol": "0xA9",
+          "byte": 169,
+          "frequency": 9238,
+          "percentage": 0.7514405729103966,
+          "code": "1000001",
+          "length": 7
+        },
+        {
+          "symbol": "0xA1",
+          "byte": 161,
+          "frequency": 8177,
+          "percentage": 0.6651363460368384,
+          "code": "0100011",
+          "length": 7
+        },
+        {
+          "symbol": "0xB6",
+          "byte": 182,
+          "frequency": 7750,
+          "percentage": 0.6304031651932857,
+          "code": "0100001",
+          "length": 7
+        },
+        {
+          "symbol": "0x8F",
+          "byte": 143,
+          "frequency": 7540,
+          "percentage": 0.613321272975145,
+          "code": "0100000",
+          "length": 7
+        },
+        {
+          "symbol": "0xB2",
+          "byte": 178,
+          "frequency": 7117,
+          "percentage": 0.578913461507176,
+          "code": "11111011",
+          "length": 8
+        },
+        {
+          "symbol": "0xBD",
+          "byte": 189,
+          "frequency": 6904,
+          "percentage": 0.5615875422573476,
+          "code": "11111010",
+          "length": 8
+        },
+        {
+          "symbol": "0xA7",
+          "byte": 167,
+          "frequency": 6903,
+          "percentage": 0.5615061999134517,
+          "code": "11110011",
+          "length": 8
+        },
+        {
+          "symbol": "0x8D",
+          "byte": 141,
+          "frequency": 6478,
+          "percentage": 0.5269357037576909,
+          "code": "11100110",
+          "length": 8
+        },
+        {
+          "symbol": "0x91",
+          "byte": 145,
+          "frequency": 5841,
+          "percentage": 0.47512063069599764,
+          "code": "11001110",
+          "length": 8
+        },
+        {
+          "symbol": "0xA8",
+          "byte": 168,
+          "frequency": 5203,
+          "percentage": 0.42322421529040843,
+          "code": "10110011",
+          "length": 8
+        },
+        {
+          "symbol": "0xA6",
+          "byte": 166,
+          "frequency": 4783,
+          "percentage": 0.3890604308541271,
+          "code": "10010111",
+          "length": 8
+        },
+        {
+          "symbol": "0xB9",
+          "byte": 185,
+          "frequency": 4780,
+          "percentage": 0.3888164038224394,
+          "code": "10010110",
+          "length": 8
+        },
+        {
+          "symbol": "0x82",
+          "byte": 130,
+          "frequency": 4778,
+          "percentage": 0.38865371913464763,
+          "code": "10010101",
+          "length": 8
+        },
+        {
+          "symbol": "0x81",
+          "byte": 129,
+          "frequency": 4354,
+          "percentage": 0.3541645653227827,
+          "code": "10000001",
+          "length": 8
+        },
+        {
+          "symbol": "0x9A",
+          "byte": 154,
+          "frequency": 4145,
+          "percentage": 0.3371640154485379,
+          "code": "10000000",
+          "length": 8
+        },
+        {
+          "symbol": "0x85",
+          "byte": 133,
+          "frequency": 3930,
+          "percentage": 0.3196754115109178,
+          "code": "01000101",
+          "length": 8
+        },
+        {
+          "symbol": "0x9B",
+          "byte": 155,
+          "frequency": 3499,
+          "percentage": 0.2846168612917815,
+          "code": "111100101",
+          "length": 9
+        },
+        {
+          "symbol": "0xB1",
+          "byte": 177,
+          "frequency": 3402,
+          "percentage": 0.27672665393387846,
+          "code": "111100100",
+          "length": 9
+        },
+        {
+          "symbol": "0x93",
+          "byte": 147,
+          "frequency": 3397,
+          "percentage": 0.27631994221439893,
+          "code": "111001111",
+          "length": 9
+        },
+        {
+          "symbol": "0x96",
+          "byte": 150,
+          "frequency": 3082,
+          "percentage": 0.25069710388718797,
+          "code": "111001110",
+          "length": 9
+        },
+        {
+          "symbol": "0x83",
+          "byte": 131,
+          "frequency": 2974,
+          "percentage": 0.2419121307464299,
+          "code": "110011110",
+          "length": 9
+        },
+        {
+          "symbol": "0x89",
+          "byte": 137,
+          "frequency": 2443,
+          "percentage": 0.1987193461377028,
+          "code": "101100100",
+          "length": 9
+        },
+        {
+          "symbol": "0x86",
+          "byte": 134,
+          "frequency": 2442,
+          "percentage": 0.19863800379380692,
+          "code": "100101001",
+          "length": 9
+        },
+        {
+          "symbol": "0x9F",
+          "byte": 159,
+          "frequency": 2124,
+          "percentage": 0.17277113843490824,
+          "code": "010001001",
+          "length": 9
+        },
+        {
+          "symbol": "0x92",
+          "byte": 146,
+          "frequency": 1805,
+          "percentage": 0.14682293073211364,
+          "code": "010001000",
+          "length": 9
+        },
+        {
+          "symbol": "0xBB",
+          "byte": 187,
+          "frequency": 1699,
+          "percentage": 0.1382006422791474,
+          "code": "1100111111",
+          "length": 10
+        },
+        {
+          "symbol": "0x0A (\\n)",
+          "byte": 10,
+          "frequency": 1297,
+          "percentage": 0.10550102003299246,
+          "code": "1100111110",
+          "length": 10
+        },
+        {
+          "symbol": "0xB7",
+          "byte": 183,
+          "frequency": 1169,
+          "percentage": 0.09508920001431626,
+          "code": "1011001010",
+          "length": 10
+        },
+        {
+          "symbol": "0xA2",
+          "byte": 162,
+          "frequency": 1168,
+          "percentage": 0.09500785767042035,
+          "code": "1001010001",
+          "length": 10
+        },
+        {
+          "symbol": "0xAA",
+          "byte": 170,
+          "frequency": 1062,
+          "percentage": 0.08638556921745412,
+          "code": "1001010000",
+          "length": 10
+        },
+        {
+          "symbol": "0xA3",
+          "byte": 163,
+          "frequency": 638,
+          "percentage": 0.051896415405589195,
+          "code": "10110010111",
+          "length": 11
+        },
+        {
+          "symbol": "0xAE",
+          "byte": 174,
+          "frequency": 637,
+          "percentage": 0.051815073061693286,
+          "code": "101100101101",
+          "length": 12
+        }
+      ],
+      "status": "성공",
+      "failure_stage": "",
+      "error_type": "",
+      "error_category": "",
+      "error_message": "",
+      "preflight_explanation": "스트리밍 입력 지원(원본 1,229,372 B): 512MiB 제한을 제거했습니다. 전체 원본을 RAM에 적재하지 않으며 청크 단위로 처리합니다. 사전 검사는 실제 압축·복원 완료를 보장하지 않습니다. 특히 Python FGK는 1GB 처리에 매우 오래 걸릴 수 있습니다.",
+      "compression_algorithm_sec": 6.211519599999974,
+      "compression_trace_peak_mib": null,
+      "compression_rss_peak_mib": null,
+      "compression_rss_increase_mib": null,
+      "decompression_algorithm_sec": 6.642339700000093,
+      "decompression_trace_peak_mib": null,
+      "decompression_rss_peak_mib": null,
+      "decompression_rss_increase_mib": null,
+      "integrity_method": "원본과 바이트 직접 비교(스트리밍) + SHA-256 + 길이"
+    },
+    {
+      "source": "C:/Level3AIproject/test_corpus/AI 랜덤 생성 샘플/korean_500000.txt",
+      "archive_path": "C:\\Level3AIproject\\results\\3\\korean_500000_20870cd3_practical.huf",
+      "restored_path": "C:\\Level3AIproject\\results\\3\\korean_500000_20870cd3_practical.restored.txt",
+      "algorithm": "C · 실용적 경량 LZ77",
+      "original_bytes": 1229372,
+      "original_chars": 500000,
+      "compressed_bytes": 169354,
+      "header_bytes": 67,
+      "payload_bytes": 169287,
+      "payload_bits": 1354291,
+      "symbol_types": 63,
+      "entropy": 5.015820365163316,
+      "avg_payload_bits": 1.1016120425713292,
+      "avg_file_bits": 1.102052104651806,
+      "redundancy_bits": -3.9142083225919873,
+      "entropy_efficiency_pct": 455.3164064415665,
+      "saving_pct": 86.22434869185243,
+      "size_ratio": 7.259184902629994,
+      "header_share_pct": 0.03956210068849865,
+      "compression_sec": 0.9549928999999793,
+      "decompression_sec": 0.597275700000182,
+      "compression_mib_s": 1.2276745740298276,
+      "decompression_mib_s": 1.9629469300502715,
+      "mismatched_bytes": 0,
+      "loss_pct": 0.0,
+      "verified": true,
+      "code_note": "실용적 모드: 빠른 탐색을 위해 윈도우 크기를 제한한 경량 LZ77 방식을 사용합니다.",
+      "symbols": [
+        {
+          "symbol": "0xEC",
+          "byte": 236,
+          "frequency": 142959,
+          "percentage": 11.628620141015087,
+          "code": "—",
+          "length": null
+        },
+        {
+          "symbol": "0x20 (SPACE)",
+          "byte": 32,
+          "frequency": 122336,
+          "percentage": 9.95109698284978,
+          "code": "—",
+          "length": null
+        },
+        {
+          "symbol": "0xEB",
+          "byte": 235,
+          "frequency": 114373,
+          "percentage": 9.303367898406666,
+          "code": "—",
+          "length": null
+        },
+        {
+          "symbol": "0xED",
+          "byte": 237,
+          "frequency": 68806,
+          "percentage": 5.596841314101835,
+          "code": "—",
+          "length": null
+        },
+        {
+          "symbol": "0x95",
+          "byte": 149,
+          "frequency": 52235,
+          "percentage": 4.248917333402746,
+          "code": "—",
+          "length": null
+        },
+        {
+          "symbol": "0x84",
+          "byte": 132,
+          "frequency": 43869,
+          "percentage": 3.5684072843695804,
+          "code": "—",
+          "length": null
+        },
+        {
+          "symbol": "0x98",
+          "byte": 152,
+          "frequency": 38869,
+          "percentage": 3.1616955648900413,
+          "code": "—",
+          "length": null
+        },
+        {
+          "symbol": "0x9D",
+          "byte": 157,
+          "frequency": 38763,
+          "percentage": 3.1530732764370755,
+          "code": "—",
+          "length": null
+        },
+        {
+          "symbol": "0xEA",
+          "byte": 234,
+          "frequency": 38548,
+          "percentage": 3.135584672499455,
+          "code": "—",
+          "length": null
+        },
+        {
+          "symbol": "0xB0",
+          "byte": 176,
+          "frequency": 36846,
+          "percentage": 2.99714000318862,
+          "code": "—",
+          "length": null
+        },
+        {
+          "symbol": "0x9C",
+          "byte": 156,
+          "frequency": 29844,
+          "percentage": 2.427580911229473,
+          "code": "—",
+          "length": null
+        },
+        {
+          "symbol": "0xB8",
+          "byte": 184,
+          "frequency": 27504,
+          "percentage": 2.237239826513049,
+          "code": "—",
+          "length": null
+        },
+        {
+          "symbol": "0xA0",
+          "byte": 160,
+          "frequency": 25380,
+          "percentage": 2.064468688078141,
+          "code": "—",
+          "length": null
+        },
+        {
+          "symbol": "0x80",
+          "byte": 128,
+          "frequency": 25270,
+          "percentage": 2.055521030249591,
+          "code": "—",
+          "length": null
+        },
+        {
+          "symbol": "0xAC",
+          "byte": 172,
+          "frequency": 24541,
+          "percentage": 1.996222461549474,
+          "code": "—",
+          "length": null
+        },
+        {
+          "symbol": "0xA4",
+          "byte": 164,
+          "frequency": 24218,
+          "percentage": 1.969948884471096,
+          "code": "—",
+          "length": null
+        },
+        {
+          "symbol": "0xB4",
+          "byte": 180,
+          "frequency": 24214,
+          "percentage": 1.9696235150955124,
+          "code": "—",
+          "length": null
+        },
+        {
+          "symbol": "0x94",
+          "byte": 148,
+          "frequency": 22516,
+          "percentage": 1.8315042151602605,
+          "code": "—",
+          "length": null
+        },
+        {
+          "symbol": "0x8B",
+          "byte": 139,
+          "frequency": 21773,
+          "percentage": 1.7710668536456011,
+          "code": "—",
+          "length": null
+        },
+        {
+          "symbol": "0xBC",
+          "byte": 188,
+          "frequency": 21127,
+          "percentage": 1.7185196994888445,
+          "code": "—",
+          "length": null
+        },
+        {
+          "symbol": "0xA5",
+          "byte": 165,
+          "frequency": 18794,
+          "percentage": 1.5287480111796918,
+          "code": "—",
+          "length": null
+        },
+        {
+          "symbol": "0x90",
+          "byte": 144,
+          "frequency": 18473,
+          "percentage": 1.5026371187891054,
+          "code": "—",
+          "length": null
+        },
+        {
+          "symbol": "0xB3",
+          "byte": 179,
+          "frequency": 17309,
+          "percentage": 1.4079546304942685,
+          "code": "—",
+          "length": null
+        },
+        {
+          "symbol": "0x9E",
+          "byte": 158,
+          "frequency": 16246,
+          "percentage": 1.3214877189329186,
+          "code": "—",
+          "length": null
+        },
+        {
+          "symbol": "0x97",
+          "byte": 151,
+          "frequency": 13918,
+          "percentage": 1.1321227423432452,
+          "code": "—",
+          "length": null
+        },
+        {
+          "symbol": "0x88",
+          "byte": 136,
+          "frequency": 13381,
+          "percentage": 1.0884419036711426,
+          "code": "—",
+          "length": null
+        },
+        {
+          "symbol": "0x8A",
+          "byte": 138,
+          "frequency": 12536,
+          "percentage": 1.0197076230791005,
+          "code": "—",
+          "length": null
+        },
+        {
+          "symbol": "0x2E (.)",
+          "byte": 46,
+          "frequency": 11681,
+          "percentage": 0.9501599190480994,
+          "code": "—",
+          "length": null
+        },
+        {
+          "symbol": "0xB5",
+          "byte": 181,
+          "frequency": 11151,
+          "percentage": 0.9070484767832682,
+          "code": "—",
+          "length": null
+        },
+        {
+          "symbol": "0x99",
+          "byte": 153,
+          "frequency": 11149,
+          "percentage": 0.9068857920954764,
+          "code": "—",
+          "length": null
+        },
+        {
+          "symbol": "0x8C",
+          "byte": 140,
+          "frequency": 9984,
+          "percentage": 0.8121219614567438,
+          "code": "—",
+          "length": null
+        },
+        {
+          "symbol": "0xA9",
+          "byte": 169,
+          "frequency": 9238,
+          "percentage": 0.7514405729103966,
+          "code": "—",
+          "length": null
+        },
+        {
+          "symbol": "0xA1",
+          "byte": 161,
+          "frequency": 8177,
+          "percentage": 0.6651363460368384,
+          "code": "—",
+          "length": null
+        },
+        {
+          "symbol": "0xB6",
+          "byte": 182,
+          "frequency": 7750,
+          "percentage": 0.6304031651932857,
+          "code": "—",
+          "length": null
+        },
+        {
+          "symbol": "0x8F",
+          "byte": 143,
+          "frequency": 7540,
+          "percentage": 0.613321272975145,
+          "code": "—",
+          "length": null
+        },
+        {
+          "symbol": "0xB2",
+          "byte": 178,
+          "frequency": 7117,
+          "percentage": 0.578913461507176,
+          "code": "—",
+          "length": null
+        },
+        {
+          "symbol": "0xBD",
+          "byte": 189,
+          "frequency": 6904,
+          "percentage": 0.5615875422573476,
+          "code": "—",
+          "length": null
+        },
+        {
+          "symbol": "0xA7",
+          "byte": 167,
+          "frequency": 6903,
+          "percentage": 0.5615061999134517,
+          "code": "—",
+          "length": null
+        },
+        {
+          "symbol": "0x8D",
+          "byte": 141,
+          "frequency": 6478,
+          "percentage": 0.5269357037576909,
+          "code": "—",
+          "length": null
+        },
+        {
+          "symbol": "0x91",
+          "byte": 145,
+          "frequency": 5841,
+          "percentage": 0.47512063069599764,
+          "code": "—",
+          "length": null
+        },
+        {
+          "symbol": "0xA8",
+          "byte": 168,
+          "frequency": 5203,
+          "percentage": 0.42322421529040843,
+          "code": "—",
+          "length": null
+        },
+        {
+          "symbol": "0xA6",
+          "byte": 166,
+          "frequency": 4783,
+          "percentage": 0.3890604308541271,
+          "code": "—",
+          "length": null
+        },
+        {
+          "symbol": "0xB9",
+          "byte": 185,
+          "frequency": 4780,
+          "percentage": 0.3888164038224394,
+          "code": "—",
+          "length": null
+        },
+        {
+          "symbol": "0x82",
+          "byte": 130,
+          "frequency": 4778,
+          "percentage": 0.38865371913464763,
+          "code": "—",
+          "length": null
+        },
+        {
+          "symbol": "0x81",
+          "byte": 129,
+          "frequency": 4354,
+          "percentage": 0.3541645653227827,
+          "code": "—",
+          "length": null
+        },
+        {
+          "symbol": "0x9A",
+          "byte": 154,
+          "frequency": 4145,
+          "percentage": 0.3371640154485379,
+          "code": "—",
+          "length": null
+        },
+        {
+          "symbol": "0x85",
+          "byte": 133,
+          "frequency": 3930,
+          "percentage": 0.3196754115109178,
+          "code": "—",
+          "length": null
+        },
+        {
+          "symbol": "0x9B",
+          "byte": 155,
+          "frequency": 3499,
+          "percentage": 0.2846168612917815,
+          "code": "—",
+          "length": null
+        },
+        {
+          "symbol": "0xB1",
+          "byte": 177,
+          "frequency": 3402,
+          "percentage": 0.27672665393387846,
+          "code": "—",
+          "length": null
+        },
+        {
+          "symbol": "0x93",
+          "byte": 147,
+          "frequency": 3397,
+          "percentage": 0.27631994221439893,
+          "code": "—",
+          "length": null
+        },
+        {
+          "symbol": "0x96",
+          "byte": 150,
+          "frequency": 3082,
+          "percentage": 0.25069710388718797,
+          "code": "—",
+          "length": null
+        },
+        {
+          "symbol": "0x83",
+          "byte": 131,
+          "frequency": 2974,
+          "percentage": 0.2419121307464299,
+          "code": "—",
+          "length": null
+        },
+        {
+          "symbol": "0x89",
+          "byte": 137,
+          "frequency": 2443,
+          "percentage": 0.1987193461377028,
+          "code": "—",
+          "length": null
+        },
+        {
+          "symbol": "0x86",
+          "byte": 134,
+          "frequency": 2442,
+          "percentage": 0.19863800379380692,
+          "code": "—",
+          "length": null
+        },
+        {
+          "symbol": "0x9F",
+          "byte": 159,
+          "frequency": 2124,
+          "percentage": 0.17277113843490824,
+          "code": "—",
+          "length": null
+        },
+        {
+          "symbol": "0x92",
+          "byte": 146,
+          "frequency": 1805,
+          "percentage": 0.14682293073211364,
+          "code": "—",
+          "length": null
+        },
+        {
+          "symbol": "0xBB",
+          "byte": 187,
+          "frequency": 1699,
+          "percentage": 0.1382006422791474,
+          "code": "—",
+          "length": null
+        },
+        {
+          "symbol": "0x0A (\\n)",
+          "byte": 10,
+          "frequency": 1297,
+          "percentage": 0.10550102003299246,
+          "code": "—",
+          "length": null
+        },
+        {
+          "symbol": "0xB7",
+          "byte": 183,
+          "frequency": 1169,
+          "percentage": 0.09508920001431626,
+          "code": "—",
+          "length": null
+        },
+        {
+          "symbol": "0xA2",
+          "byte": 162,
+          "frequency": 1168,
+          "percentage": 0.09500785767042035,
+          "code": "—",
+          "length": null
+        },
+        {
+          "symbol": "0xAA",
+          "byte": 170,
+          "frequency": 1062,
+          "percentage": 0.08638556921745412,
+          "code": "—",
+          "length": null
+        },
+        {
+          "symbol": "0xA3",
+          "byte": 163,
+          "frequency": 638,
+          "percentage": 0.051896415405589195,
+          "code": "—",
+          "length": null
+        },
+        {
+          "symbol": "0xAE",
+          "byte": 174,
+          "frequency": 637,
+          "percentage": 0.051815073061693286,
+          "code": "—",
+          "length": null
+        }
+      ],
+      "status": "성공",
+      "failure_stage": "",
+      "error_type": "",
+      "error_category": "",
+      "error_message": "",
+      "preflight_explanation": "스트리밍 입력 지원(원본 1,229,372 B): 512MiB 제한을 제거했습니다. 전체 원본을 RAM에 적재하지 않으며 청크 단위로 처리합니다. 사전 검사는 실제 압축·복원 완료를 보장하지 않습니다. 특히 Python FGK는 1GB 처리에 매우 오래 걸릴 수 있습니다.",
+      "compression_algorithm_sec": 0.895218800000066,
+      "compression_trace_peak_mib": null,
+      "compression_rss_peak_mib": null,
+      "compression_rss_increase_mib": null,
+      "decompression_algorithm_sec": 0.5784412999998949,
+      "decompression_trace_peak_mib": null,
+      "decompression_rss_peak_mib": null,
+      "decompression_rss_increase_mib": null,
+      "integrity_method": "원본과 바이트 직접 비교(스트리밍) + SHA-256 + 길이"
+    },
+    {
+      "source": "C:/Level3AIproject/test_corpus/AI 랜덤 생성 샘플/sample_50000.txt",
+      "archive_path": "C:\\Level3AIproject\\results\\3\\sample_50000_4f91dcc1_static.huf",
+      "restored_path": "C:\\Level3AIproject\\results\\3\\sample_50000_4f91dcc1_static.restored.txt",
+      "algorithm": "A · 정적 허프만 (힙 + 정규형)",
+      "original_bytes": 50000,
+      "original_chars": 50000,
+      "compressed_bytes": 26953,
+      "header_bytes": 320,
+      "payload_bytes": 26633,
+      "payload_bits": 213059,
+      "symbol_types": 28,
+      "entropy": 4.241026465425191,
+      "avg_payload_bits": 4.26118,
+      "avg_file_bits": 4.31248,
+      "redundancy_bits": 0.02015353457480984,
+      "entropy_efficiency_pct": 99.52704334069882,
+      "saving_pct": 46.094,
+      "size_ratio": 1.8550810670426299,
+      "header_share_pct": 1.187251882907283,
+      "compression_sec": 0.03701460000002044,
+      "decompression_sec": 0.06910479999987729,
+      "compression_mib_s": 1.2882407433900724,
+      "decompression_mib_s": 0.6900203143688597,
+      "mismatched_bytes": 0,
+      "loss_pct": 0.0,
+      "verified": true,
+      "code_note": "정적 코드표: 파일 전체에서 각 심볼의 코드는 동일합니다.",
+      "symbols": [
+        {
+          "symbol": "0x20 (SPACE)",
+          "byte": 32,
+          "frequency": 7059,
+          "percentage": 14.118,
+          "code": "000",
+          "length": 3
+        },
+        {
+          "symbol": "0x65 (e)",
+          "byte": 101,
+          "frequency": 6057,
+          "percentage": 12.113999999999999,
+          "code": "001",
+          "length": 3
+        },
+        {
+          "symbol": "0x61 (a)",
+          "byte": 97,
+          "frequency": 3455,
+          "percentage": 6.909999999999999,
+          "code": "0100",
+          "length": 4
+        },
+        {
+          "symbol": "0x72 (r)",
+          "byte": 114,
+          "frequency": 3356,
+          "percentage": 6.712,
+          "code": "1000",
+          "length": 4
+        },
+        {
+          "symbol": "0x73 (s)",
+          "byte": 115,
+          "frequency": 3328,
+          "percentage": 6.656,
+          "code": "1001",
+          "length": 4
+        },
+        {
+          "symbol": "0x74 (t)",
+          "byte": 116,
+          "frequency": 3166,
+          "percentage": 6.332,
+          "code": "1010",
+          "length": 4
+        },
+        {
+          "symbol": "0x6F (o)",
+          "byte": 111,
+          "frequency": 2757,
+          "percentage": 5.514,
+          "code": "0111",
+          "length": 4
+        },
+        {
+          "symbol": "0x6E (n)",
+          "byte": 110,
+          "frequency": 2564,
+          "percentage": 5.128,
+          "code": "0110",
+          "length": 4
+        },
+        {
+          "symbol": "0x63 (c)",
+          "byte": 99,
+          "frequency": 2208,
+          "percentage": 4.4159999999999995,
+          "code": "0101",
+          "length": 4
+        },
+        {
+          "symbol": "0x69 (i)",
+          "byte": 105,
+          "frequency": 2036,
+          "percentage": 4.072,
+          "code": "11001",
+          "length": 5
+        },
+        {
+          "symbol": "0x6D (m)",
+          "byte": 109,
+          "frequency": 1813,
+          "percentage": 3.626,
+          "code": "11011",
+          "length": 5
+        },
+        {
+          "symbol": "0x68 (h)",
+          "byte": 104,
+          "frequency": 1453,
+          "percentage": 2.9059999999999997,
+          "code": "11000",
+          "length": 5
+        },
+        {
+          "symbol": "0x6C (l)",
+          "byte": 108,
+          "frequency": 1369,
+          "percentage": 2.738,
+          "code": "11010",
+          "length": 5
+        },
+        {
+          "symbol": "0x64 (d)",
+          "byte": 100,
+          "frequency": 1300,
+          "percentage": 2.6,
+          "code": "10110",
+          "length": 5
+        },
+        {
+          "symbol": "0x67 (g)",
+          "byte": 103,
+          "frequency": 1182,
+          "percentage": 2.3640000000000003,
+          "code": "10111",
+          "length": 5
+        },
+        {
+          "symbol": "0x70 (p)",
+          "byte": 112,
+          "frequency": 1052,
+          "percentage": 2.104,
+          "code": "111010",
+          "length": 6
+        },
+        {
+          "symbol": "0x75 (u)",
+          "byte": 117,
+          "frequency": 1030,
+          "percentage": 2.06,
+          "code": "111011",
+          "length": 6
+        },
+        {
+          "symbol": "0x66 (f)",
+          "byte": 102,
+          "frequency": 965,
+          "percentage": 1.9300000000000002,
+          "code": "111001",
+          "length": 6
+        },
+        {
+          "symbol": "0x2E (.)",
+          "byte": 46,
+          "frequency": 765,
+          "percentage": 1.53,
+          "code": "111000",
+          "length": 6
+        },
+        {
+          "symbol": "0x79 (y)",
+          "byte": 121,
+          "frequency": 691,
+          "percentage": 1.3820000000000001,
+          "code": "111100",
+          "length": 6
+        },
+        {
+          "symbol": "0x62 (b)",
+          "byte": 98,
+          "frequency": 503,
+          "percentage": 1.006,
+          "code": "1111100",
+          "length": 7
+        },
+        {
+          "symbol": "0x54 (T)",
+          "byte": 84,
+          "frequency": 475,
+          "percentage": 0.95,
+          "code": "1111011",
+          "length": 7
+        },
+        {
+          "symbol": "0x41 (A)",
+          "byte": 65,
+          "frequency": 291,
+          "percentage": 0.582,
+          "code": "1111010",
+          "length": 7
+        },
+        {
+          "symbol": "0x76 (v)",
+          "byte": 118,
+          "frequency": 291,
+          "percentage": 0.582,
+          "code": "1111101",
+          "length": 7
+        },
+        {
+          "symbol": "0x78 (x)",
+          "byte": 120,
+          "frequency": 272,
+          "percentage": 0.544,
+          "code": "11111110",
+          "length": 8
+        },
+        {
+          "symbol": "0x77 (w)",
+          "byte": 119,
+          "frequency": 271,
+          "percentage": 0.542,
+          "code": "11111101",
+          "length": 8
+        },
+        {
+          "symbol": "0x71 (q)",
+          "byte": 113,
+          "frequency": 194,
+          "percentage": 0.388,
+          "code": "11111100",
+          "length": 8
+        },
+        {
+          "symbol": "0x7A (z)",
+          "byte": 122,
+          "frequency": 97,
+          "percentage": 0.194,
+          "code": "11111111",
+          "length": 8
+        }
+      ],
+      "status": "성공",
+      "failure_stage": "",
+      "error_type": "",
+      "error_category": "",
+      "error_message": "",
+      "preflight_explanation": "스트리밍 입력 지원(원본 50,000 B): 512MiB 제한을 제거했습니다. 전체 원본을 RAM에 적재하지 않으며 청크 단위로 처리합니다. 사전 검사는 실제 압축·복원 완료를 보장하지 않습니다. 특히 Python FGK는 1GB 처리에 매우 오래 걸릴 수 있습니다.",
+      "compression_algorithm_sec": 0.026821400000017093,
+      "compression_trace_peak_mib": null,
+      "compression_rss_peak_mib": null,
+      "compression_rss_increase_mib": null,
+      "decompression_algorithm_sec": 0.0628266999999596,
+      "decompression_trace_peak_mib": null,
+      "decompression_rss_peak_mib": null,
+      "decompression_rss_increase_mib": null,
+      "integrity_method": "원본과 바이트 직접 비교(스트리밍) + SHA-256 + 길이"
+    },
+    {
+      "source": "C:/Level3AIproject/test_corpus/AI 랜덤 생성 샘플/sample_50000.txt",
+      "archive_path": "C:\\Level3AIproject\\results\\3\\sample_50000_4f91dcc1_fgk.huf",
+      "restored_path": "C:\\Level3AIproject\\results\\3\\sample_50000_4f91dcc1_fgk.restored.txt",
+      "algorithm": "B · FGK 적응형 허프만",
+      "original_bytes": 50000,
+      "original_chars": 50000,
+      "compressed_bytes": 26746,
+      "header_bytes": 61,
+      "payload_bytes": 26685,
+      "payload_bits": 213475,
+      "symbol_types": 28,
+      "entropy": 4.241026465425191,
+      "avg_payload_bits": 4.2695,
+      "avg_file_bits": 4.27936,
+      "redundancy_bits": 0.02847353457480928,
+      "entropy_efficiency_pct": 99.33309440040264,
+      "saving_pct": 46.508,
+      "size_ratio": 1.8694384206984223,
+      "header_share_pct": 0.2280714873252075,
+      "compression_sec": 0.23693980000007286,
+      "decompression_sec": 0.24842369999987568,
+      "compression_mib_s": 0.2012482319150174,
+      "decompression_mib_s": 0.1919451156243803,
+      "mismatched_bytes": 0,
+      "loss_pct": 0.0,
+      "verified": true,
+      "code_note": "적응형 코드표: 표시된 코드는 처리 완료 시점의 최종 코드이며, 실제 전송 코드는 시점마다 달라집니다.",
+      "symbols": [
+        {
+          "symbol": "0x20 (SPACE)",
+          "byte": 32,
+          "frequency": 7059,
+          "percentage": 14.118,
+          "code": "110",
+          "length": 3
+        },
+        {
+          "symbol": "0x65 (e)",
+          "byte": 101,
+          "frequency": 6057,
+          "percentage": 12.113999999999999,
+          "code": "011",
+          "length": 3
+        },
+        {
+          "symbol": "0x61 (a)",
+          "byte": 97,
+          "frequency": 3455,
+          "percentage": 6.909999999999999,
+          "code": "1011",
+          "length": 4
+        },
+        {
+          "symbol": "0x72 (r)",
+          "byte": 114,
+          "frequency": 3356,
+          "percentage": 6.712,
+          "code": "1010",
+          "length": 4
+        },
+        {
+          "symbol": "0x73 (s)",
+          "byte": 115,
+          "frequency": 3328,
+          "percentage": 6.656,
+          "code": "1001",
+          "length": 4
+        },
+        {
+          "symbol": "0x74 (t)",
+          "byte": 116,
+          "frequency": 3166,
+          "percentage": 6.332,
+          "code": "1000",
+          "length": 4
+        },
+        {
+          "symbol": "0x6F (o)",
+          "byte": 111,
+          "frequency": 2757,
+          "percentage": 5.514,
+          "code": "0100",
+          "length": 4
+        },
+        {
+          "symbol": "0x6E (n)",
+          "byte": 110,
+          "frequency": 2564,
+          "percentage": 5.128,
+          "code": "0010",
+          "length": 4
+        },
+        {
+          "symbol": "0x63 (c)",
+          "byte": 99,
+          "frequency": 2208,
+          "percentage": 4.4159999999999995,
+          "code": "0000",
+          "length": 4
+        },
+        {
+          "symbol": "0x69 (i)",
+          "byte": 105,
+          "frequency": 2036,
+          "percentage": 4.072,
+          "code": "11110",
+          "length": 5
+        },
+        {
+          "symbol": "0x6D (m)",
+          "byte": 109,
+          "frequency": 1813,
+          "percentage": 3.626,
+          "code": "11100",
+          "length": 5
+        },
+        {
+          "symbol": "0x68 (h)",
+          "byte": 104,
+          "frequency": 1453,
+          "percentage": 2.9059999999999997,
+          "code": "01010",
+          "length": 5
+        },
+        {
+          "symbol": "0x6C (l)",
+          "byte": 108,
+          "frequency": 1369,
+          "percentage": 2.738,
+          "code": "00111",
+          "length": 5
+        },
+        {
+          "symbol": "0x64 (d)",
+          "byte": 100,
+          "frequency": 1300,
+          "percentage": 2.6,
+          "code": "00110",
+          "length": 5
+        },
+        {
+          "symbol": "0x67 (g)",
+          "byte": 103,
+          "frequency": 1182,
+          "percentage": 2.3640000000000003,
+          "code": "00010",
+          "length": 5
+        },
+        {
+          "symbol": "0x70 (p)",
+          "byte": 112,
+          "frequency": 1052,
+          "percentage": 2.104,
+          "code": "111111",
+          "length": 6
+        },
+        {
+          "symbol": "0x75 (u)",
+          "byte": 117,
+          "frequency": 1030,
+          "percentage": 2.06,
+          "code": "111011",
+          "length": 6
+        },
+        {
+          "symbol": "0x66 (f)",
+          "byte": 102,
+          "frequency": 965,
+          "percentage": 1.9300000000000002,
+          "code": "111010",
+          "length": 6
+        },
+        {
+          "symbol": "0x2E (.)",
+          "byte": 46,
+          "frequency": 765,
+          "percentage": 1.53,
+          "code": "010110",
+          "length": 6
+        },
+        {
+          "symbol": "0x79 (y)",
+          "byte": 121,
+          "frequency": 691,
+          "percentage": 1.3820000000000001,
+          "code": "000111",
+          "length": 6
+        },
+        {
+          "symbol": "0x62 (b)",
+          "byte": 98,
+          "frequency": 503,
+          "percentage": 1.006,
+          "code": "1111100",
+          "length": 7
+        },
+        {
+          "symbol": "0x54 (T)",
+          "byte": 84,
+          "frequency": 475,
+          "percentage": 0.95,
+          "code": "0101111",
+          "length": 7
+        },
+        {
+          "symbol": "0x41 (A)",
+          "byte": 65,
+          "frequency": 291,
+          "percentage": 0.582,
+          "code": "0101110",
+          "length": 7
+        },
+        {
+          "symbol": "0x76 (v)",
+          "byte": 118,
+          "frequency": 291,
+          "percentage": 0.582,
+          "code": "0001100",
+          "length": 7
+        },
+        {
+          "symbol": "0x78 (x)",
+          "byte": 120,
+          "frequency": 272,
+          "percentage": 0.544,
+          "code": "11111011",
+          "length": 8
+        },
+        {
+          "symbol": "0x77 (w)",
+          "byte": 119,
+          "frequency": 271,
+          "percentage": 0.542,
+          "code": "11111010",
+          "length": 8
+        },
+        {
+          "symbol": "0x71 (q)",
+          "byte": 113,
+          "frequency": 194,
+          "percentage": 0.388,
+          "code": "00011011",
+          "length": 8
+        },
+        {
+          "symbol": "0x7A (z)",
+          "byte": 122,
+          "frequency": 97,
+          "percentage": 0.194,
+          "code": "000110101",
+          "length": 9
+        }
+      ],
+      "status": "성공",
+      "failure_stage": "",
+      "error_type": "",
+      "error_category": "",
+      "error_message": "",
+      "preflight_explanation": "스트리밍 입력 지원(원본 50,000 B): 512MiB 제한을 제거했습니다. 전체 원본을 RAM에 적재하지 않으며 청크 단위로 처리합니다. 사전 검사는 실제 압축·복원 완료를 보장하지 않습니다. 특히 Python FGK는 1GB 처리에 매우 오래 걸릴 수 있습니다.",
+      "compression_algorithm_sec": 0.21509130000004006,
+      "compression_trace_peak_mib": null,
+      "compression_rss_peak_mib": null,
+      "compression_rss_increase_mib": null,
+      "decompression_algorithm_sec": 0.22970600000007835,
+      "decompression_trace_peak_mib": null,
+      "decompression_rss_peak_mib": null,
+      "decompression_rss_increase_mib": null,
+      "integrity_method": "원본과 바이트 직접 비교(스트리밍) + SHA-256 + 길이"
+    },
+    {
+      "source": "C:/Level3AIproject/test_corpus/AI 랜덤 생성 샘플/sample_50000.txt",
+      "archive_path": "C:\\Level3AIproject\\results\\3\\sample_50000_4f91dcc1_practical.huf",
+      "restored_path": "C:\\Level3AIproject\\results\\3\\sample_50000_4f91dcc1_practical.restored.txt",
+      "algorithm": "C · 실용적 경량 LZ77",
+      "original_bytes": 50000,
+      "original_chars": 50000,
+      "compressed_bytes": 7200,
+      "header_bytes": 67,
+      "payload_bytes": 7133,
+      "payload_bits": 57057,
+      "symbol_types": 28,
+      "entropy": 4.241026465425191,
+      "avg_payload_bits": 1.14114,
+      "avg_file_bits": 1.152,
+      "redundancy_bits": -3.0998864654251905,
+      "entropy_efficiency_pct": 371.6482171710036,
+      "saving_pct": 85.6,
+      "size_ratio": 6.944444444444445,
+      "header_share_pct": 0.9305555555555555,
+      "compression_sec": 0.05283299999996416,
+      "decompression_sec": 0.030876199999966047,
+      "compression_mib_s": 0.902536593044969,
+      "decompression_mib_s": 1.5443518250421016,
+      "mismatched_bytes": 0,
+      "loss_pct": 0.0,
+      "verified": true,
+      "code_note": "실용적 모드: 빠른 탐색을 위해 윈도우 크기를 제한한 경량 LZ77 방식을 사용합니다.",
+      "symbols": [
+        {
+          "symbol": "0x20 (SPACE)",
+          "byte": 32,
+          "frequency": 7059,
+          "percentage": 14.118,
+          "code": "—",
+          "length": null
+        },
+        {
+          "symbol": "0x65 (e)",
+          "byte": 101,
+          "frequency": 6057,
+          "percentage": 12.113999999999999,
+          "code": "—",
+          "length": null
+        },
+        {
+          "symbol": "0x61 (a)",
+          "byte": 97,
+          "frequency": 3455,
+          "percentage": 6.909999999999999,
+          "code": "—",
+          "length": null
+        },
+        {
+          "symbol": "0x72 (r)",
+          "byte": 114,
+          "frequency": 3356,
+          "percentage": 6.712,
+          "code": "—",
+          "length": null
+        },
+        {
+          "symbol": "0x73 (s)",
+          "byte": 115,
+          "frequency": 3328,
+          "percentage": 6.656,
+          "code": "—",
+          "length": null
+        },
+        {
+          "symbol": "0x74 (t)",
+          "byte": 116,
+          "frequency": 3166,
+          "percentage": 6.332,
+          "code": "—",
+          "length": null
+        },
+        {
+          "symbol": "0x6F (o)",
+          "byte": 111,
+          "frequency": 2757,
+          "percentage": 5.514,
+          "code": "—",
+          "length": null
+        },
+        {
+          "symbol": "0x6E (n)",
+          "byte": 110,
+          "frequency": 2564,
+          "percentage": 5.128,
+          "code": "—",
+          "length": null
+        },
+        {
+          "symbol": "0x63 (c)",
+          "byte": 99,
+          "frequency": 2208,
+          "percentage": 4.4159999999999995,
+          "code": "—",
+          "length": null
+        },
+        {
+          "symbol": "0x69 (i)",
+          "byte": 105,
+          "frequency": 2036,
+          "percentage": 4.072,
+          "code": "—",
+          "length": null
+        },
+        {
+          "symbol": "0x6D (m)",
+          "byte": 109,
+          "frequency": 1813,
+          "percentage": 3.626,
+          "code": "—",
+          "length": null
+        },
+        {
+          "symbol": "0x68 (h)",
+          "byte": 104,
+          "frequency": 1453,
+          "percentage": 2.9059999999999997,
+          "code": "—",
+          "length": null
+        },
+        {
+          "symbol": "0x6C (l)",
+          "byte": 108,
+          "frequency": 1369,
+          "percentage": 2.738,
+          "code": "—",
+          "length": null
+        },
+        {
+          "symbol": "0x64 (d)",
+          "byte": 100,
+          "frequency": 1300,
+          "percentage": 2.6,
+          "code": "—",
+          "length": null
+        },
+        {
+          "symbol": "0x67 (g)",
+          "byte": 103,
+          "frequency": 1182,
+          "percentage": 2.3640000000000003,
+          "code": "—",
+          "length": null
+        },
+        {
+          "symbol": "0x70 (p)",
+          "byte": 112,
+          "frequency": 1052,
+          "percentage": 2.104,
+          "code": "—",
+          "length": null
+        },
+        {
+          "symbol": "0x75 (u)",
+          "byte": 117,
+          "frequency": 1030,
+          "percentage": 2.06,
+          "code": "—",
+          "length": null
+        },
+        {
+          "symbol": "0x66 (f)",
+          "byte": 102,
+          "frequency": 965,
+          "percentage": 1.9300000000000002,
+          "code": "—",
+          "length": null
+        },
+        {
+          "symbol": "0x2E (.)",
+          "byte": 46,
+          "frequency": 765,
+          "percentage": 1.53,
+          "code": "—",
+          "length": null
+        },
+        {
+          "symbol": "0x79 (y)",
+          "byte": 121,
+          "frequency": 691,
+          "percentage": 1.3820000000000001,
+          "code": "—",
+          "length": null
+        },
+        {
+          "symbol": "0x62 (b)",
+          "byte": 98,
+          "frequency": 503,
+          "percentage": 1.006,
+          "code": "—",
+          "length": null
+        },
+        {
+          "symbol": "0x54 (T)",
+          "byte": 84,
+          "frequency": 475,
+          "percentage": 0.95,
+          "code": "—",
+          "length": null
+        },
+        {
+          "symbol": "0x41 (A)",
+          "byte": 65,
+          "frequency": 291,
+          "percentage": 0.582,
+          "code": "—",
+          "length": null
+        },
+        {
+          "symbol": "0x76 (v)",
+          "byte": 118,
+          "frequency": 291,
+          "percentage": 0.582,
+          "code": "—",
+          "length": null
+        },
+        {
+          "symbol": "0x78 (x)",
+          "byte": 120,
+          "frequency": 272,
+          "percentage": 0.544,
+          "code": "—",
+          "length": null
+        },
+        {
+          "symbol": "0x77 (w)",
+          "byte": 119,
+          "frequency": 271,
+          "percentage": 0.542,
+          "code": "—",
+          "length": null
+        },
+        {
+          "symbol": "0x71 (q)",
+          "byte": 113,
+          "frequency": 194,
+          "percentage": 0.388,
+          "code": "—",
+          "length": null
+        },
+        {
+          "symbol": "0x7A (z)",
+          "byte": 122,
+          "frequency": 97,
+          "percentage": 0.194,
+          "code": "—",
+          "length": null
+        }
+      ],
+      "status": "성공",
+      "failure_stage": "",
+      "error_type": "",
+      "error_category": "",
+      "error_message": "",
+      "preflight_explanation": "스트리밍 입력 지원(원본 50,000 B): 512MiB 제한을 제거했습니다. 전체 원본을 RAM에 적재하지 않으며 청크 단위로 처리합니다. 사전 검사는 실제 압축·복원 완료를 보장하지 않습니다. 특히 Python FGK는 1GB 처리에 매우 오래 걸릴 수 있습니다.",
+      "compression_algorithm_sec": 0.043001099999855796,
+      "compression_trace_peak_mib": null,
+      "compression_rss_peak_mib": null,
+      "compression_rss_increase_mib": null,
+      "decompression_algorithm_sec": 0.02550369999994473,
+      "decompression_trace_peak_mib": null,
+      "decompression_rss_peak_mib": null,
+      "decompression_rss_increase_mib": null,
+      "integrity_method": "원본과 바이트 직접 비교(스트리밍) + SHA-256 + 길이"
+    },
+    {
+      "source": "C:/Level3AIproject/test_corpus/AI 랜덤 생성 샘플/sample_500000.txt",
+      "archive_path": "C:\\Level3AIproject\\results\\3\\sample_500000_e46240a3_static.huf",
+      "restored_path": "C:\\Level3AIproject\\results\\3\\sample_500000_e46240a3_static.restored.txt",
+      "algorithm": "A · 정적 허프만 (힙 + 정규형)",
+      "original_bytes": 500000,
+      "original_chars": 500000,
+      "compressed_bytes": 266413,
+      "header_bytes": 320,
+      "payload_bytes": 266093,
+      "payload_bits": 2128742,
+      "symbol_types": 28,
+      "entropy": 4.236918533606191,
+      "avg_payload_bits": 4.257484,
+      "avg_file_bits": 4.262608,
+      "redundancy_bits": 0.020565466393808407,
+      "entropy_efficiency_pct": 99.5169572828974,
+      "saving_pct": 46.7174,
+      "size_ratio": 1.8767852920090236,
+      "header_share_pct": 0.12011425868857752,
+      "compression_sec": 0.255920500000002,
+      "decompression_sec": 0.7004128999999466,
+      "compression_mib_s": 1.8632237675493808,
+      "decompression_mib_s": 0.6807943688689363,
+      "mismatched_bytes": 0,
+      "loss_pct": 0.0,
+      "verified": true,
+      "code_note": "정적 코드표: 파일 전체에서 각 심볼의 코드는 동일합니다.",
+      "symbols": [
+        {
+          "symbol": "0x20 (SPACE)",
+          "byte": 32,
+          "frequency": 70800,
+          "percentage": 14.16,
+          "code": "000",
+          "length": 3
+        },
+        {
+          "symbol": "0x65 (e)",
+          "byte": 101,
+          "frequency": 61288,
+          "percentage": 12.2576,
+          "code": "001",
+          "length": 3
+        },
+        {
+          "symbol": "0x61 (a)",
+          "byte": 97,
+          "frequency": 34147,
+          "percentage": 6.8294,
+          "code": "0100",
+          "length": 4
+        },
+        {
+          "symbol": "0x73 (s)",
+          "byte": 115,
+          "frequency": 33704,
+          "percentage": 6.740799999999999,
+          "code": "1001",
+          "length": 4
+        },
+        {
+          "symbol": "0x72 (r)",
+          "byte": 114,
+          "frequency": 33429,
+          "percentage": 6.6858,
+          "code": "1000",
+          "length": 4
+        },
+        {
+          "symbol": "0x74 (t)",
+          "byte": 116,
+          "frequency": 31700,
+          "percentage": 6.34,
+          "code": "1010",
+          "length": 4
+        },
+        {
+          "symbol": "0x6F (o)",
+          "byte": 111,
+          "frequency": 27866,
+          "percentage": 5.5732,
+          "code": "0111",
+          "length": 4
+        },
+        {
+          "symbol": "0x6E (n)",
+          "byte": 110,
+          "frequency": 25715,
+          "percentage": 5.143,
+          "code": "0110",
+          "length": 4
+        },
+        {
+          "symbol": "0x63 (c)",
+          "byte": 99,
+          "frequency": 22018,
+          "percentage": 4.4036,
+          "code": "0101",
+          "length": 4
+        },
+        {
+          "symbol": "0x69 (i)",
+          "byte": 105,
+          "frequency": 19830,
+          "percentage": 3.966,
+          "code": "11001",
+          "length": 5
+        },
+        {
+          "symbol": "0x6D (m)",
+          "byte": 109,
+          "frequency": 18183,
+          "percentage": 3.6366,
+          "code": "11011",
+          "length": 5
+        },
+        {
+          "symbol": "0x68 (h)",
+          "byte": 104,
+          "frequency": 14257,
+          "percentage": 2.8514,
+          "code": "11000",
+          "length": 5
+        },
+        {
+          "symbol": "0x64 (d)",
+          "byte": 100,
+          "frequency": 13329,
+          "percentage": 2.6658,
+          "code": "10110",
+          "length": 5
+        },
+        {
+          "symbol": "0x6C (l)",
+          "byte": 108,
+          "frequency": 13315,
+          "percentage": 2.6630000000000003,
+          "code": "11010",
+          "length": 5
+        },
+        {
+          "symbol": "0x67 (g)",
+          "byte": 103,
+          "frequency": 11393,
+          "percentage": 2.2786,
+          "code": "10111",
+          "length": 5
+        },
+        {
+          "symbol": "0x70 (p)",
+          "byte": 112,
+          "frequency": 10602,
+          "percentage": 2.1204,
+          "code": "111010",
+          "length": 6
+        },
+        {
+          "symbol": "0x75 (u)",
+          "byte": 117,
+          "frequency": 10552,
+          "percentage": 2.1104000000000003,
+          "code": "111011",
+          "length": 6
+        },
+        {
+          "symbol": "0x66 (f)",
+          "byte": 102,
+          "frequency": 9538,
+          "percentage": 1.9076,
+          "code": "111001",
+          "length": 6
+        },
+        {
+          "symbol": "0x2E (.)",
+          "byte": 46,
+          "frequency": 7641,
+          "percentage": 1.5282,
+          "code": "111000",
+          "length": 6
+        },
+        {
+          "symbol": "0x79 (y)",
+          "byte": 121,
+          "frequency": 6791,
+          "percentage": 1.3582,
+          "code": "111100",
+          "length": 6
+        },
+        {
+          "symbol": "0x54 (T)",
+          "byte": 84,
+          "frequency": 4791,
+          "percentage": 0.9582,
+          "code": "1111011",
+          "length": 7
+        },
+        {
+          "symbol": "0x62 (b)",
+          "byte": 98,
+          "frequency": 4783,
+          "percentage": 0.9566,
+          "code": "1111100",
+          "length": 7
+        },
+        {
+          "symbol": "0x78 (x)",
+          "byte": 120,
+          "frequency": 2909,
+          "percentage": 0.5818,
+          "code": "1111101",
+          "length": 7
+        },
+        {
+          "symbol": "0x41 (A)",
+          "byte": 65,
+          "frequency": 2850,
+          "percentage": 0.5700000000000001,
+          "code": "1111010",
+          "length": 7
+        },
+        {
+          "symbol": "0x76 (v)",
+          "byte": 118,
+          "frequency": 2839,
+          "percentage": 0.5678,
+          "code": "11111101",
+          "length": 8
+        },
+        {
+          "symbol": "0x77 (w)",
+          "byte": 119,
+          "frequency": 2839,
+          "percentage": 0.5678,
+          "code": "11111110",
+          "length": 8
+        },
+        {
+          "symbol": "0x71 (q)",
+          "byte": 113,
+          "frequency": 1936,
+          "percentage": 0.3872,
+          "code": "11111100",
+          "length": 8
+        },
+        {
+          "symbol": "0x7A (z)",
+          "byte": 122,
+          "frequency": 955,
+          "percentage": 0.191,
+          "code": "11111111",
+          "length": 8
+        }
+      ],
+      "status": "성공",
+      "failure_stage": "",
+      "error_type": "",
+      "error_category": "",
+      "error_message": "",
+      "preflight_explanation": "스트리밍 입력 지원(원본 500,000 B): 512MiB 제한을 제거했습니다. 전체 원본을 RAM에 적재하지 않으며 청크 단위로 처리합니다. 사전 검사는 실제 압축·복원 완료를 보장하지 않습니다. 특히 Python FGK는 1GB 처리에 매우 오래 걸릴 수 있습니다.",
+      "compression_algorithm_sec": 0.22780349999993632,
+      "compression_trace_peak_mib": null,
+      "compression_rss_peak_mib": null,
+      "compression_rss_increase_mib": null,
+      "decompression_algorithm_sec": 0.6773987999999918,
+      "decompression_trace_peak_mib": null,
+      "decompression_rss_peak_mib": null,
+      "decompression_rss_increase_mib": null,
+      "integrity_method": "원본과 바이트 직접 비교(스트리밍) + SHA-256 + 길이"
+    },
+    {
+      "source": "C:/Level3AIproject/test_corpus/AI 랜덤 생성 샘플/sample_500000.txt",
+      "archive_path": "C:\\Level3AIproject\\results\\3\\sample_500000_e46240a3_fgk.huf",
+      "restored_path": "C:\\Level3AIproject\\results\\3\\sample_500000_e46240a3_fgk.restored.txt",
+      "algorithm": "B · FGK 적응형 허프만",
+      "original_bytes": 500000,
+      "original_chars": 500000,
+      "compressed_bytes": 266325,
+      "header_bytes": 61,
+      "payload_bytes": 266264,
+      "payload_bits": 2130108,
+      "symbol_types": 28,
+      "entropy": 4.236918533606191,
+      "avg_payload_bits": 4.260216,
+      "avg_file_bits": 4.2612,
+      "redundancy_bits": 0.023297466393808364,
+      "entropy_efficiency_pct": 99.45313884568743,
+      "saving_pct": 46.73500000000001,
+      "size_ratio": 1.8774054257016803,
+      "header_share_pct": 0.0229043461935605,
+      "compression_sec": 3.023476999999957,
+      "decompression_sec": 3.069665200000145,
+      "compression_mib_s": 0.15771152160348226,
+      "decompression_mib_s": 0.15533849040055003,
+      "mismatched_bytes": 0,
+      "loss_pct": 0.0,
+      "verified": true,
+      "code_note": "적응형 코드표: 표시된 코드는 처리 완료 시점의 최종 코드이며, 실제 전송 코드는 시점마다 달라집니다.",
+      "symbols": [
+        {
+          "symbol": "0x20 (SPACE)",
+          "byte": 32,
+          "frequency": 70800,
+          "percentage": 14.16,
+          "code": "110",
+          "length": 3
+        },
+        {
+          "symbol": "0x65 (e)",
+          "byte": 101,
+          "frequency": 61288,
+          "percentage": 12.2576,
+          "code": "011",
+          "length": 3
+        },
+        {
+          "symbol": "0x61 (a)",
+          "byte": 97,
+          "frequency": 34147,
+          "percentage": 6.8294,
+          "code": "1011",
+          "length": 4
+        },
+        {
+          "symbol": "0x73 (s)",
+          "byte": 115,
+          "frequency": 33704,
+          "percentage": 6.740799999999999,
+          "code": "1010",
+          "length": 4
+        },
+        {
+          "symbol": "0x72 (r)",
+          "byte": 114,
+          "frequency": 33429,
+          "percentage": 6.6858,
+          "code": "1001",
+          "length": 4
+        },
+        {
+          "symbol": "0x74 (t)",
+          "byte": 116,
+          "frequency": 31700,
+          "percentage": 6.34,
+          "code": "1000",
+          "length": 4
+        },
+        {
+          "symbol": "0x6F (o)",
+          "byte": 111,
+          "frequency": 27866,
+          "percentage": 5.5732,
+          "code": "0100",
+          "length": 4
+        },
+        {
+          "symbol": "0x6E (n)",
+          "byte": 110,
+          "frequency": 25715,
+          "percentage": 5.143,
+          "code": "0010",
+          "length": 4
+        },
+        {
+          "symbol": "0x63 (c)",
+          "byte": 99,
+          "frequency": 22018,
+          "percentage": 4.4036,
+          "code": "0000",
+          "length": 4
+        },
+        {
+          "symbol": "0x69 (i)",
+          "byte": 105,
+          "frequency": 19830,
+          "percentage": 3.966,
+          "code": "11101",
+          "length": 5
+        },
+        {
+          "symbol": "0x6D (m)",
+          "byte": 109,
+          "frequency": 18183,
+          "percentage": 3.6366,
+          "code": "11100",
+          "length": 5
+        },
+        {
+          "symbol": "0x68 (h)",
+          "byte": 104,
+          "frequency": 14257,
+          "percentage": 2.8514,
+          "code": "01010",
+          "length": 5
+        },
+        {
+          "symbol": "0x64 (d)",
+          "byte": 100,
+          "frequency": 13329,
+          "percentage": 2.6658,
+          "code": "00111",
+          "length": 5
+        },
+        {
+          "symbol": "0x6C (l)",
+          "byte": 108,
+          "frequency": 13315,
+          "percentage": 2.6630000000000003,
+          "code": "00110",
+          "length": 5
+        },
+        {
+          "symbol": "0x67 (g)",
+          "byte": 103,
+          "frequency": 11393,
+          "percentage": 2.2786,
+          "code": "00010",
+          "length": 5
+        },
+        {
+          "symbol": "0x70 (p)",
+          "byte": 112,
+          "frequency": 10602,
+          "percentage": 2.1204,
+          "code": "111111",
+          "length": 6
+        },
+        {
+          "symbol": "0x75 (u)",
+          "byte": 117,
+          "frequency": 10552,
+          "percentage": 2.1104000000000003,
+          "code": "111110",
+          "length": 6
+        },
+        {
+          "symbol": "0x66 (f)",
+          "byte": 102,
+          "frequency": 9538,
+          "percentage": 1.9076,
+          "code": "111100",
+          "length": 6
+        },
+        {
+          "symbol": "0x2E (.)",
+          "byte": 46,
+          "frequency": 7641,
+          "percentage": 1.5282,
+          "code": "010110",
+          "length": 6
+        },
+        {
+          "symbol": "0x79 (y)",
+          "byte": 121,
+          "frequency": 6791,
+          "percentage": 1.3582,
+          "code": "000111",
+          "length": 6
+        },
+        {
+          "symbol": "0x54 (T)",
+          "byte": 84,
+          "frequency": 4791,
+          "percentage": 0.9582,
+          "code": "1111010",
+          "length": 7
+        },
+        {
+          "symbol": "0x62 (b)",
+          "byte": 98,
+          "frequency": 4783,
+          "percentage": 0.9566,
+          "code": "0101111",
+          "length": 7
+        },
+        {
+          "symbol": "0x78 (x)",
+          "byte": 120,
+          "frequency": 2909,
+          "percentage": 0.5818,
+          "code": "0101110",
+          "length": 7
+        },
+        {
+          "symbol": "0x41 (A)",
+          "byte": 65,
+          "frequency": 2850,
+          "percentage": 0.5700000000000001,
+          "code": "0001100",
+          "length": 7
+        },
+        {
+          "symbol": "0x76 (v)",
+          "byte": 118,
+          "frequency": 2839,
+          "percentage": 0.5678,
+          "code": "11110111",
+          "length": 8
+        },
+        {
+          "symbol": "0x77 (w)",
+          "byte": 119,
+          "frequency": 2839,
+          "percentage": 0.5678,
+          "code": "11110110",
+          "length": 8
+        },
+        {
+          "symbol": "0x71 (q)",
+          "byte": 113,
+          "frequency": 1936,
+          "percentage": 0.3872,
+          "code": "00011011",
+          "length": 8
+        },
+        {
+          "symbol": "0x7A (z)",
+          "byte": 122,
+          "frequency": 955,
+          "percentage": 0.191,
+          "code": "000110101",
+          "length": 9
+        }
+      ],
+      "status": "성공",
+      "failure_stage": "",
+      "error_type": "",
+      "error_category": "",
+      "error_message": "",
+      "preflight_explanation": "스트리밍 입력 지원(원본 500,000 B): 512MiB 제한을 제거했습니다. 전체 원본을 RAM에 적재하지 않으며 청크 단위로 처리합니다. 사전 검사는 실제 압축·복원 완료를 보장하지 않습니다. 특히 Python FGK는 1GB 처리에 매우 오래 걸릴 수 있습니다.",
+      "compression_algorithm_sec": 2.9945480000001226,
+      "compression_trace_peak_mib": null,
+      "compression_rss_peak_mib": null,
+      "compression_rss_increase_mib": null,
+      "decompression_algorithm_sec": 3.0497656000000006,
+      "decompression_trace_peak_mib": null,
+      "decompression_rss_peak_mib": null,
+      "decompression_rss_increase_mib": null,
+      "integrity_method": "원본과 바이트 직접 비교(스트리밍) + SHA-256 + 길이"
+    },
+    {
+      "source": "C:/Level3AIproject/test_corpus/AI 랜덤 생성 샘플/sample_500000.txt",
+      "archive_path": "C:\\Level3AIproject\\results\\3\\sample_500000_e46240a3_practical.huf",
+      "restored_path": "C:\\Level3AIproject\\results\\3\\sample_500000_e46240a3_practical.restored.txt",
+      "algorithm": "C · 실용적 경량 LZ77",
+      "original_bytes": 500000,
+      "original_chars": 500000,
+      "compressed_bytes": 67987,
+      "header_bytes": 67,
+      "payload_bytes": 67920,
+      "payload_bits": 543353,
+      "symbol_types": 28,
+      "entropy": 4.236918533606191,
+      "avg_payload_bits": 1.086706,
+      "avg_file_bits": 1.087792,
+      "redundancy_bits": -3.1502125336061915,
+      "entropy_efficiency_pct": 389.8863661014287,
+      "saving_pct": 86.40259999999999,
+      "size_ratio": 7.354347154603086,
+      "header_share_pct": 0.09854825187168134,
+      "compression_sec": 0.611970299999939,
+      "decompression_sec": 0.32016939999994065,
+      "compression_mib_s": 0.7791834966552666,
+      "decompression_mib_s": 1.4893277065303974,
+      "mismatched_bytes": 0,
+      "loss_pct": 0.0,
+      "verified": true,
+      "code_note": "실용적 모드: 빠른 탐색을 위해 윈도우 크기를 제한한 경량 LZ77 방식을 사용합니다.",
+      "symbols": [
+        {
+          "symbol": "0x20 (SPACE)",
+          "byte": 32,
+          "frequency": 70800,
+          "percentage": 14.16,
+          "code": "—",
+          "length": null
+        },
+        {
+          "symbol": "0x65 (e)",
+          "byte": 101,
+          "frequency": 61288,
+          "percentage": 12.2576,
+          "code": "—",
+          "length": null
+        },
+        {
+          "symbol": "0x61 (a)",
+          "byte": 97,
+          "frequency": 34147,
+          "percentage": 6.8294,
+          "code": "—",
+          "length": null
+        },
+        {
+          "symbol": "0x73 (s)",
+          "byte": 115,
+          "frequency": 33704,
+          "percentage": 6.740799999999999,
+          "code": "—",
+          "length": null
+        },
+        {
+          "symbol": "0x72 (r)",
+          "byte": 114,
+          "frequency": 33429,
+          "percentage": 6.6858,
+          "code": "—",
+          "length": null
+        },
+        {
+          "symbol": "0x74 (t)",
+          "byte": 116,
+          "frequency": 31700,
+          "percentage": 6.34,
+          "code": "—",
+          "length": null
+        },
+        {
+          "symbol": "0x6F (o)",
+          "byte": 111,
+          "frequency": 27866,
+          "percentage": 5.5732,
+          "code": "—",
+          "length": null
+        },
+        {
+          "symbol": "0x6E (n)",
+          "byte": 110,
+          "frequency": 25715,
+          "percentage": 5.143,
+          "code": "—",
+          "length": null
+        },
+        {
+          "symbol": "0x63 (c)",
+          "byte": 99,
+          "frequency": 22018,
+          "percentage": 4.4036,
+          "code": "—",
+          "length": null
+        },
+        {
+          "symbol": "0x69 (i)",
+          "byte": 105,
+          "frequency": 19830,
+          "percentage": 3.966,
+          "code": "—",
+          "length": null
+        },
+        {
+          "symbol": "0x6D (m)",
+          "byte": 109,
+          "frequency": 18183,
+          "percentage": 3.6366,
+          "code": "—",
+          "length": null
+        },
+        {
+          "symbol": "0x68 (h)",
+          "byte": 104,
+          "frequency": 14257,
+          "percentage": 2.8514,
+          "code": "—",
+          "length": null
+        },
+        {
+          "symbol": "0x64 (d)",
+          "byte": 100,
+          "frequency": 13329,
+          "percentage": 2.6658,
+          "code": "—",
+          "length": null
+        },
+        {
+          "symbol": "0x6C (l)",
+          "byte": 108,
+          "frequency": 13315,
+          "percentage": 2.6630000000000003,
+          "code": "—",
+          "length": null
+        },
+        {
+          "symbol": "0x67 (g)",
+          "byte": 103,
+          "frequency": 11393,
+          "percentage": 2.2786,
+          "code": "—",
+          "length": null
+        },
+        {
+          "symbol": "0x70 (p)",
+          "byte": 112,
+          "frequency": 10602,
+          "percentage": 2.1204,
+          "code": "—",
+          "length": null
+        },
+        {
+          "symbol": "0x75 (u)",
+          "byte": 117,
+          "frequency": 10552,
+          "percentage": 2.1104000000000003,
+          "code": "—",
+          "length": null
+        },
+        {
+          "symbol": "0x66 (f)",
+          "byte": 102,
+          "frequency": 9538,
+          "percentage": 1.9076,
+          "code": "—",
+          "length": null
+        },
+        {
+          "symbol": "0x2E (.)",
+          "byte": 46,
+          "frequency": 7641,
+          "percentage": 1.5282,
+          "code": "—",
+          "length": null
+        },
+        {
+          "symbol": "0x79 (y)",
+          "byte": 121,
+          "frequency": 6791,
+          "percentage": 1.3582,
+          "code": "—",
+          "length": null
+        },
+        {
+          "symbol": "0x54 (T)",
+          "byte": 84,
+          "frequency": 4791,
+          "percentage": 0.9582,
+          "code": "—",
+          "length": null
+        },
+        {
+          "symbol": "0x62 (b)",
+          "byte": 98,
+          "frequency": 4783,
+          "percentage": 0.9566,
+          "code": "—",
+          "length": null
+        },
+        {
+          "symbol": "0x78 (x)",
+          "byte": 120,
+          "frequency": 2909,
+          "percentage": 0.5818,
+          "code": "—",
+          "length": null
+        },
+        {
+          "symbol": "0x41 (A)",
+          "byte": 65,
+          "frequency": 2850,
+          "percentage": 0.5700000000000001,
+          "code": "—",
+          "length": null
+        },
+        {
+          "symbol": "0x76 (v)",
+          "byte": 118,
+          "frequency": 2839,
+          "percentage": 0.5678,
+          "code": "—",
+          "length": null
+        },
+        {
+          "symbol": "0x77 (w)",
+          "byte": 119,
+          "frequency": 2839,
+          "percentage": 0.5678,
+          "code": "—",
+          "length": null
+        },
+        {
+          "symbol": "0x71 (q)",
+          "byte": 113,
+          "frequency": 1936,
+          "percentage": 0.3872,
+          "code": "—",
+          "length": null
+        },
+        {
+          "symbol": "0x7A (z)",
+          "byte": 122,
+          "frequency": 955,
+          "percentage": 0.191,
+          "code": "—",
+          "length": null
+        }
+      ],
+      "status": "성공",
+      "failure_stage": "",
+      "error_type": "",
+      "error_category": "",
+      "error_message": "",
+      "preflight_explanation": "스트리밍 입력 지원(원본 500,000 B): 512MiB 제한을 제거했습니다. 전체 원본을 RAM에 적재하지 않으며 청크 단위로 처리합니다. 사전 검사는 실제 압축·복원 완료를 보장하지 않습니다. 특히 Python FGK는 1GB 처리에 매우 오래 걸릴 수 있습니다.",
+      "compression_algorithm_sec": 0.5648639999999432,
+      "compression_trace_peak_mib": null,
+      "compression_rss_peak_mib": null,
+      "compression_rss_increase_mib": null,
+      "decompression_algorithm_sec": 0.3013495000000148,
+      "decompression_trace_peak_mib": null,
+      "decompression_rss_peak_mib": null,
+      "decompression_rss_increase_mib": null,
+      "integrity_method": "원본과 바이트 직접 비교(스트리밍) + SHA-256 + 길이"
+    }
+  ]
+}

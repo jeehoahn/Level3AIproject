@@ -8,6 +8,7 @@ from pathlib import Path
 import unittest
 
 from algorithms.registry import CODECS
+from algorithms.neural_byte import NeuralByte
 from core.container_format import pack, unpack, STRUCT
 from core.engine import compress_and_verify, compress_file, decompress_file, benchmark
 from core.metrics import entropy, char_count, diff_bytes
@@ -15,6 +16,17 @@ from scripts.make_test_data import make_text
 
 
 class AlgorithmTests(unittest.TestCase):
+    def test_neural_format_and_compression_of_predictable_data(self):
+        codec = NeuralByte()
+        encoded = codec.encode(b'BANANA')
+        self.assertEqual(encoded.bit_length, 60)
+        self.assertEqual(encoded.payload, bytes.fromhex('424069c000000000'))
+        predictable = b'ABC' * 1000
+        encoded = codec.encode(predictable)
+        self.assertLess(encoded.bit_length, len(predictable))
+        decoded = codec.decode(encoded.payload, encoded.bit_length, b'', len(predictable))
+        self.assertEqual(decoded.data, predictable)
+
     def test_round_trip_byte_cases(self):
         rng = random.Random(2026)
         cases = [b'', b'Z', b'Z'*10000, b'AB'*5000, bytes(range(256)),
@@ -81,11 +93,16 @@ class AlgorithmTests(unittest.TestCase):
             for i, text in enumerate(('A'*1000, 'Hello, Huffman! '*1000, '가나다라마바사'*100)):
                 path = root / f'text{i}.txt'; path.write_text(text, encoding='utf-8')
                 inputs.append(str(path))
-            records, summary = benchmark(inputs, list(CODECS), str(root / 'out'))
-            self.assertEqual(len(records), 6)
-            self.assertEqual(len(summary), 2)
+            codec_ids = list(CODECS)
+            records, summary = benchmark(inputs, codec_ids, str(root / 'out'))
+            self.assertCountEqual(
+                [(row['source'], row['algorithm']) for row in records],
+                [(source, CODECS[codec_id].name) for source in inputs for codec_id in codec_ids],
+            )
+            self.assertCountEqual([row['algorithm'] for row in summary],
+                                  [CODECS[codec_id].name for codec_id in codec_ids])
             self.assertTrue(all(row['verified'] for row in records))
-            self.assertTrue(all(row['pass_count'] == 3 for row in summary))
+            self.assertTrue(all(row['pass_count'] == len(inputs) for row in summary))
             self.assertAlmostEqual(entropy(b'A'*100), 0)
             self.assertAlmostEqual(entropy(b'AB'*100), 1)
             self.assertEqual(diff_bytes(b'ABC', b'ADC!')[0], 2)

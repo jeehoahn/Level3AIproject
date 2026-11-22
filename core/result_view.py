@@ -44,7 +44,8 @@ VALID_ORDERS = {'value_desc', 'value_asc', 'name_asc', 'name_desc'}
 
 
 def chart_rows(records: list[dict], metric: str, order: str = 'value_desc',
-               algorithm: str | None = None) -> tuple[list[dict], int]:
+               algorithm: str | None = None, *,
+               source: str | None = None) -> tuple[list[dict], int]:
     """유효한 수치만 막대그래프에 표시. 숫자가 없는 결과는 별도 집계."""
     if metric not in METRIC_INFO:
         raise ValueError(f'지원하지 않는 그래프 지표: {metric}')
@@ -53,6 +54,8 @@ def chart_rows(records: list[dict], metric: str, order: str = 'value_desc',
     rows: list[dict] = []
     omitted = 0
     for index, record in enumerate(records):
+        if source is not None and record.get('source') != source:
+            continue
         if algorithm and record.get('algorithm') != algorithm:
             continue
         raw = record.get(metric)

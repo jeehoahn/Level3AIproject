@@ -2,8 +2,9 @@
 from .static_huffman import StaticHuffman
 from .adaptive_fgk import AdaptiveFGK
 from .practical_codec import PracticalLZ77
+from .neural_byte import NeuralByte
 
-CODECS = {codec.id: codec for codec in (StaticHuffman(), AdaptiveFGK(), PracticalLZ77())}
+CODECS = {codec.id: codec for codec in (StaticHuffman(), AdaptiveFGK(), PracticalLZ77(), NeuralByte())}
 
 
 def get_codec(codec_id: str):
